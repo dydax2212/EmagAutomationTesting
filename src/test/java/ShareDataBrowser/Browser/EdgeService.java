@@ -1,0 +1,43 @@
+package ShareDataBrowser.Browser;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+
+public class EdgeService implements BrowserServiceInterface
+{
+    private WebDriver driver;
+
+    @Override
+    public void openBrowser()
+    {
+        EdgeOptions options = (EdgeOptions) browserOptions();
+        driver = new EdgeDriver(options);
+    }
+    @Override
+    public Object browserOptions()
+    {
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--window-size=2560,1440");
+        options.addArguments("--disable-blink-features=BlockCredentialedSubresources");
+
+        // Additional flags to reduce CAPTCHA triggers
+        options.addArguments("--disable-features=IsolateOrigins,site-per-process");
+        options.addArguments("--disable-web-security");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--disable-features=MediaSessionService");
+        options.addArguments("--disable-extensions");
+
+        // Optional: Set a real user-agent to avoid detection
+        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0");
+
+        return options;
+    }
+
+    public WebDriver getDriver()
+    {
+        return driver;
+    }
+}
