@@ -1,7 +1,0 @@
-<suite name="Suite Metode Paralele" parallel="classes" thread-count="16">
-    <test name="Test 1">
-        <packages>
-            <package name="EmagTests.*" />
-        </packages>
-    </test>
-</suite>

@@ -12,7 +12,7 @@ public class CommonMethods {
     public CommonMethods(WebDriver driver)
     {
         this.driver = driver;
-        this.elementsMethods = new ElementsMethods(driver);
+        //this.elementsMethods = new ElementsMethods(driver);
         PageFactory.initElements(driver,this);
     }
     public boolean isDisplayed(WebElement element)

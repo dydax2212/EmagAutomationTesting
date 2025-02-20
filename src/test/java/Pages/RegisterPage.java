@@ -13,8 +13,6 @@ public class RegisterPage
     WebDriver driver;
     ElementsMethods elementsMethods;
 
-
-
     // Registration elements
 
     @FindBy(id = "user_login_continue")

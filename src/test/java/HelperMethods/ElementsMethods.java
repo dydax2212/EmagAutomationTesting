@@ -8,14 +8,14 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
-public class ElementsMethods extends CommonMethods
+public class ElementsMethods
 {
     WebDriver driver;
     WebDriverWait driverWait;
 
     public ElementsMethods(WebDriver driver)
     {
-        super(driver);
+        this.driver = driver;
     }
 
     public void clickOnElement(WebElement element)
@@ -57,7 +57,7 @@ public class ElementsMethods extends CommonMethods
 
     public void fillElement(WebElement element, String text)
     {
-        Assert.assertTrue(isDisplayed(element));
+       // Assert.assertTrue(isDisplayed(element));
         Assert.assertTrue(element.isDisplayed());
 
         String textelement = element.getText();
@@ -65,9 +65,6 @@ public class ElementsMethods extends CommonMethods
         element.sendKeys(text);
         Assert.assertTrue(!element.getText().isEmpty());
         Assert.assertTrue(element.getText().equals(text));
-
     }
-
-
 
 }

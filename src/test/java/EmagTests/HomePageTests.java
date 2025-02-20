@@ -17,24 +17,24 @@ public class HomePageTests extends Hooks
         elementsMethods = new ElementsMethods(getDriver());
 
         //ACCEPT OR REJECT COOKIES
-        homePage.clickOnAcceptCookies();
+ //       homePage.clickOnAcceptCookies();
 //      homePage.clickOnRejectCookies();
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
-        homePage.closeBlackBanner();
+ //       homePage.closeBlackBanner();
 
         //SCROLL TO THE MIDDLE OF THE WEBPAGE
         elementsMethods.scrollToHalfPage();
-
+        elementsMethods.waitForSeconds(3);
         //SCROLL TO THE END OF THE WEBPAGE
         homePage.scrollToFooter();
-
+        elementsMethods.waitForSeconds(3);
         //SCROLL TO THE TOP OF THE WEBPAGE
         homePage.scrollToHeader();
-
+        elementsMethods.waitForSeconds(3);
         //HOVER ON PC, PERIFERICE & SOFTWARE
         homePage.hoverOnPeriferice();
-
+        elementsMethods.waitForSeconds(3);
         //CLICK ON PLACI VIDEO
         homePage.clickOnSection();
 
