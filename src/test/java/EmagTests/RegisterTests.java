@@ -30,22 +30,19 @@ public class RegisterTests extends Hooks
 
         //ACCEPT COOKIES
         homePage.clickOnAcceptCookies();
-        elementsMethods.waitForSeconds(3);
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
         homePage.closeBlackBanner();
-        elementsMethods.waitForSeconds(3);
 
         //GO TO REGISTRATION PAGE FROM MAIN WEBPAGE
         homePage.hoverContulMeu();
-        elementsMethods.waitForSeconds(3);
 
         homePage.clickOnContNou();
-        elementsMethods.waitForSeconds(3);
 
         //REGISTER TEST
 
         registerPage.fillRegistrationForm(data);
+
 
 //        //INSERT EMAIL
 //        registerPage.insertEmail("test12gsgs3@gmail.com");

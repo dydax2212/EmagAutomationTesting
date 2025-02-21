@@ -34,6 +34,16 @@ public class ElementsMethods
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public void waitUntilElementIsPresent(WebElement element)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
+        } catch (Exception e) {
+            System.out.println("Element is not visible or interactable: " + e.getMessage());
+        }
+    }
+
     public void waitForSeconds(int seconds) {
         try {
             Thread.sleep(seconds * 500L);
@@ -61,14 +71,24 @@ public class ElementsMethods
 
     public void fillElement(WebElement element, String text)
     {
-        Assert.assertTrue(isDisplayed(element));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Wait for element to be visible
+        wait.until(ExpectedConditions.visibilityOf(element));
+
         Assert.assertTrue(element.isDisplayed());
 
-        String textelement = element.getText();
+        String textelement = element.getAttribute("value");
         Assert.assertTrue(textelement.isEmpty());
+
         element.sendKeys(text);
-        Assert.assertTrue(!element.getText().isEmpty());
-        Assert.assertTrue(element.getText().equals(text));
+
+        // Wait for text to be updated in the input field
+        wait.until(ExpectedConditions.attributeToBe(element, "value", text));
+
+        Assert.assertTrue(!element.getAttribute("value").isEmpty());
+        Assert.assertTrue(element.getAttribute("value").equals(text));
     }
+
 
 }

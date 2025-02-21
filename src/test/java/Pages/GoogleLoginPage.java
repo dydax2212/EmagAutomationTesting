@@ -15,16 +15,19 @@ public class GoogleLoginPage
     @FindBy(xpath = "//*[@class='btn btn-social google mt-md']")
     WebElement googleSignIn;
 
-    @FindBy(id = "identifierId")
+    @FindBy(css = "#identifierId")
     WebElement gmailField;
 
-    @FindBy(css = "#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input")
+    @FindBy(css = "#identifierNext > div > button > span")
+    WebElement nextStepButton;
+
+    @FindBy(xpath = "//*[@class='whsOnd zHQkBf'][1]")
     WebElement gmailPasswordField;
 
     @FindBy(xpath = "//*[@class='VfPpkd-muHVFf-bMcfAe']")
     WebElement showPasswordToggle;
 
-    @FindBy(css = "#yDmH0d > c-wiz > div > div.JYXaTc.F8PBrb > div > div > div:nth-child(2) > div > div > button")
+    @FindBy(css = "#passwordNext > div > button")
     WebElement gmailContinueButton;
 
     @FindBy(id = "validate_mfa_phone_phone")
@@ -46,16 +49,35 @@ public class GoogleLoginPage
     public void fillGmailLoginForm(GoogleLoginObjectData data)
     {
         elementsMethods.clickOnElement(googleSignIn);
-        elementsMethods.fillElement(gmailField, data.getEmail());
-        elementsMethods.fillElement(gmailPasswordField, data.getPassword());
-        elementsMethods.clickOnElement(showPasswordToggle);
-        elementsMethods.clickOnElement(gmailContinueButton);
-        elementsMethods.fillElement(phoneField, data.getPhoneNumber());
-        elementsMethods.clickOnElement(trimiteSMSButton);
-    }
 
-    public boolean errorMessageIsDisplayed()
-    {
-        return errorMessage.isDisplayed();
+        elementsMethods.waitUntilElementIsPresent(gmailField);
+        elementsMethods.fillElement(gmailField, data.getEmail());
+        System.out.println("Email typed successfully.");
+
+        elementsMethods.waitForSeconds(4);
+        elementsMethods.clickOnElement(nextStepButton);
+        System.out.println("Next step button clicked.");
+
+        elementsMethods.waitForSeconds(4);
+        elementsMethods.fillElement(gmailPasswordField, data.getPassword());
+        System.out.println("Password typed successfully.");
+
+        elementsMethods.clickOnElement(showPasswordToggle);
+        System.out.println("Show password toggle enabled.");
+
+        elementsMethods.clickOnElement(gmailContinueButton);
+        System.out.println("Continue button clicked.");
+
+        elementsMethods.waitUntilElementIsPresent(phoneField);
+        elementsMethods.fillElement(phoneField, data.getPhoneNumber());
+        System.out.println("Phone number typed successfully.");
+
+        elementsMethods.waitUntilElementIsPresent(trimiteSMSButton);
+        elementsMethods.clickOnElement(trimiteSMSButton);
+        System.out.println("'Trimite SMS' button clicked.");
+
+        elementsMethods.waitUntilElementIsPresent(errorMessage);
+        errorMessage.isDisplayed();
+        System.out.println("Error message: " + errorMessage.getText());
     }
 }

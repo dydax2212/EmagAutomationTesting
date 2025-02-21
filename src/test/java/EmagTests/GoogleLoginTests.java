@@ -1,45 +1,46 @@
 package EmagTests;
 
 import HelperMethods.ElementsMethods;
+import Logger.LoggerUtility;
+import ObjectData.GoogleLoginObjectData;
 import Pages.GoogleLoginPage;
 import Pages.HomePage;
 import ShareDataBrowser.Hooks;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import xmlReaderUtility.xmlReader;
+
+import java.util.Map;
 
 public class GoogleLoginTests extends Hooks
 {
     HomePage homePage;
     ElementsMethods elementsMethods;
     GoogleLoginPage googleLoginPage;
+    private Map<String, GoogleLoginObjectData> googleLoginObjectDataMap;
 
     @Test
     public void metodaTest() {
+
+        googleLoginObjectDataMap = xmlReader.loadData("src/test/resources/gmailLoginData.xml", GoogleLoginObjectData.class);
+        GoogleLoginObjectData data = googleLoginObjectDataMap.get("dataSet_1");
+
         homePage = new HomePage(getDriver());
         elementsMethods = new ElementsMethods(getDriver());
         googleLoginPage = new GoogleLoginPage(getDriver());
 
         //ACCEPT COOKIES
         homePage.clickOnAcceptCookies();
-        elementsMethods.waitForSeconds(3);
+        LoggerUtility.infoTest("Cookies where accepted.");
 
-        //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
-        homePage.closeBlackBanner();
-        elementsMethods.waitForSeconds(3);
-
-        //GO TO REGISTRATION PAGE FROM MAIN WEBPAGE
-        homePage.hoverContulMeu();
-        elementsMethods.waitForSeconds(3);
-
-        homePage.clickOnContNou();
-        elementsMethods.waitForSeconds(3);
-
+        //
+        homePage.clickOnLoginFromStickyBlackBanner();
+        LoggerUtility.infoTest("Clicked on login button from black banner");
 
         //GOOGLE LOGIN TEST
 
-
-
-
+        googleLoginPage.fillGmailLoginForm(data);
+        LoggerUtility.infoTest("All data typed and error message received.");
 
     }
 }

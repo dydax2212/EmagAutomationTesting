@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ChromeService implements BrowserServiceInterface
 {
     private WebDriver driver;
@@ -25,6 +29,8 @@ public class ChromeService implements BrowserServiceInterface
         options.addArguments("--window-size=2560,1440");
         options.addArguments("--disable-blink-features=BlockCredentialedSubresources");
 
+        options.addArguments("--disable-blink-features=AutomationControlled");
+
         //These might help with CAPTCHAs:
         options.addArguments("--disable-features=IsolateOrigins,site-per-process"); // Avoid detection via site isolation
         options.addArguments("--disable-web-security"); // Might prevent some bot detections
@@ -33,7 +39,7 @@ public class ChromeService implements BrowserServiceInterface
         options.addArguments("--disable-extensions"); // Some extensions trigger CAPTCHA detection
 
         // Optional: Set a real user-agent to avoid detection
-        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0");
+        options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
 
         if (Boolean.parseBoolean(ci_cd))
             options.addArguments("--headless");

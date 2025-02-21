@@ -25,6 +25,8 @@ public class EdgeService implements BrowserServiceInterface
         options.addArguments("--window-size=2560,1440");
         options.addArguments("--disable-blink-features=BlockCredentialedSubresources");
 
+        options.addArguments("--disable-blink-features=AutomationControlled");
+
         // Additional flags to reduce CAPTCHA triggers
         options.addArguments("--disable-features=IsolateOrigins,site-per-process");
         options.addArguments("--disable-web-security");

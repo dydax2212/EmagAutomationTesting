@@ -127,7 +127,7 @@ public class HomePage
 
     public void clickOnLoginFromStickyBlackBanner()
     {
-        elementsMethods.waitForElementToBeClickable(loginFromBlackBanner);
+        elementsMethods.waitUntilElementIsPresent(loginFromBlackBanner);
         elementsMethods.clickOnElement(loginFromBlackBanner);
         System.out.println("Successfully clicked on login from sticky black banner.");
     }
