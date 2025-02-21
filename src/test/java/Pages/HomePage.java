@@ -110,11 +110,13 @@ public class HomePage
     public void scrollToFooter()
     {
         elementsMethods.scrollToElement(footer);
+        elementsMethods.waitForSeconds(2);
         System.out.println("Successfully scrolled to footer.");
     }
     public void scrollToHeader()
     {
         elementsMethods.scrollToElement(header);
+        elementsMethods.waitForSeconds(2);
         System.out.println("Successfully scrolled to header.");
     }
 

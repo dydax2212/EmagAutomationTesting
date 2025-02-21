@@ -6,6 +6,7 @@ public class RegisterFormObjectData
     private String fullName;
     private String password1;
     private String password2;
+    private String phoneNumber;
 
     public String getEmail() {
         return email;
@@ -23,4 +24,7 @@ public class RegisterFormObjectData
         return password2;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 }

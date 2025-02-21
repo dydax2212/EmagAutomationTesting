@@ -19,7 +19,12 @@ public class ElementsMethods
 
     public void clickOnElement(WebElement element)
     {
-        element.click();
+        try {
+            element.click();
+        } catch (Exception e) {
+            System.out.println("Normal click failed, trying JS click for: " + element);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
     }
 
     public void hoverOnElement(WebElement element)

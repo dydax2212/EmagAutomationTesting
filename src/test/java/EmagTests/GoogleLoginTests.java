@@ -6,6 +6,7 @@ import ObjectData.GoogleLoginObjectData;
 import Pages.GoogleLoginPage;
 import Pages.HomePage;
 import ShareDataBrowser.Hooks;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import xmlReaderUtility.xmlReader;
@@ -31,18 +32,18 @@ public class GoogleLoginTests extends Hooks
 
         //ACCEPT COOKIES
         homePage.clickOnAcceptCookies();
-        LoggerUtility.infoTest("Cookies where accepted.");
+        ChainTestListener.log("Cookies where accepted.");
 
         //
         homePage.clickOnLoginFromStickyBlackBanner();
-        LoggerUtility.infoTest("Clicked on login button from black banner");
+        ChainTestListener.log("Clicked on login button from black banner");
 
         //GOOGLE LOGIN TEST
 
         //Use debug at line 72 from GoogleLoginPage to resolve the reCAPCHA manually
 
         googleLoginPage.fillGmailLoginForm(data);
-        LoggerUtility.infoTest("All data typed and error message received.");
+        ChainTestListener.log("All data typed and error message received.");
 
     }
 }
