@@ -1,1 +1,1 @@
-Personal projects to learn automation testing.
+Personal project to learn automation testing.
