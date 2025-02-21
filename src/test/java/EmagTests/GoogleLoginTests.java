@@ -1,13 +1,12 @@
 package EmagTests;
 
 import HelperMethods.ElementsMethods;
-import Pages.GoogleRegisterPage;
 import Pages.HomePage;
 import ShareDataBrowser.Hooks;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GoogleRegisterTests extends Hooks
+public class GoogleLoginTests extends Hooks
 {
     HomePage homePage;
     ElementsMethods elementsMethods;

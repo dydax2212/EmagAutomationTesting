@@ -1,6 +1,5 @@
 package Pages;
 
-import HelperMethods.CommonMethods;
 import HelperMethods.ElementsMethods;
 import ObjectData.RegisterFormObjectData;
 import org.openqa.selenium.WebDriver;

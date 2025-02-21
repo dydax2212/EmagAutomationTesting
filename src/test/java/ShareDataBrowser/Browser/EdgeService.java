@@ -17,6 +17,8 @@ public class EdgeService implements BrowserServiceInterface
     @Override
     public Object browserOptions()
     {
+        String ci_cd = System.getProperty("ci_cd");
+
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
@@ -32,6 +34,9 @@ public class EdgeService implements BrowserServiceInterface
 
         // Optional: Set a real user-agent to avoid detection
         options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0");
+
+        if (Boolean.parseBoolean(ci_cd))
+            options.addArguments("--headless");
 
         return options;
     }

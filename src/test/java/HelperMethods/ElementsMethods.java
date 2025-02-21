@@ -55,9 +55,14 @@ public class ElementsMethods
         System.out.println("Successfully scrolled to the element.");
     }
 
+    public boolean isDisplayed(WebElement element)
+    {
+        return element.isDisplayed();
+    }
+
     public void fillElement(WebElement element, String text)
     {
-       // Assert.assertTrue(isDisplayed(element));
+        Assert.assertTrue(isDisplayed(element));
         Assert.assertTrue(element.isDisplayed());
 
         String textelement = element.getText();
