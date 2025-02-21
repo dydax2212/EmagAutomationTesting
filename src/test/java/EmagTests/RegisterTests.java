@@ -49,6 +49,5 @@ public class RegisterTests extends Hooks
 
         registerPage.fillRegistrationForm(data);
         ChainTestListener.log("Registration finished.");
-
     }
 }

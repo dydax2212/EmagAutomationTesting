@@ -11,7 +11,7 @@ public class RegisterPage {
     WebDriver driver;
     ElementsMethods elementsMethods;
 
-    // Registration elements
+    // ELEMENTE
 
     @FindBy(id = "user_login_continue")
     WebElement loginContinueButton;
@@ -51,6 +51,8 @@ public class RegisterPage {
         this.elementsMethods = new ElementsMethods(driver);
         PageFactory.initElements(driver, this);
     }
+
+    // METODE
 
     public void fillRegistrationForm(RegisterFormObjectData data)
     {

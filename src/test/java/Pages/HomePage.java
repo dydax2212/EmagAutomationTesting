@@ -11,12 +11,7 @@ public class HomePage
     WebDriver driver;
     ElementsMethods elementsMethods;
 
-    public HomePage(WebDriver driver)
-    {
-        this.driver = driver;
-        this.elementsMethods = new ElementsMethods(driver);
-        PageFactory.initElements(driver,this);
-    }
+    //ELEMENTE
 
     @FindBy(css = "body > div.gdpr-cookie-banner.js-gdpr-cookie-banner.py-2.px-0.show > div > div.col-xs-12.col-sm-5.col-md-4.col-lg-3.cookie-banner-buttons > button.btn.btn-primary.btn-block.js-accept.gtm_h76e8zjgoo")
     WebElement acceptCookies;
@@ -53,6 +48,15 @@ public class HomePage
 
     @FindBy(xpath = "//*[@class='btn btn-link btn-sm']")
     WebElement contNou;
+
+    public HomePage(WebDriver driver)
+    {
+        this.driver = driver;
+        this.elementsMethods = new ElementsMethods(driver);
+        PageFactory.initElements(driver,this);
+    }
+
+    // METODE
 
     public void hoverContulMeu()
     {

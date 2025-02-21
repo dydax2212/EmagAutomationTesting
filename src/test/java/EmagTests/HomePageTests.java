@@ -20,11 +20,15 @@ public class HomePageTests extends Hooks
         ChainTestListener.log("Chrome opened");
 
         //ACCEPT OR REJECT COOKIES
-//      homePage.clickOnAcceptCookies();
-        homePage.clickOnRejectCookies();
+        homePage.clickOnAcceptCookies();
+        ChainTestListener.log("Cookies accepted.");
+
+//        homePage.clickOnRejectCookies();
+//        ChainTestListener.log("Cookies rejected.");
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
          homePage.closeBlackBanner();
+         ChainTestListener.log("Login sticky black banner closed.");
 
         //SCROLL TO THE MIDDLE OF THE WEBPAGE
         elementsMethods.scrollToHalfPage();
@@ -57,7 +61,6 @@ public class HomePageTests extends Hooks
         //CLICK ON EMAG ICON FROM THE HEADER
         homePage.clickOnEmag();
         ChainTestListener.log("CLICK ON EMAG ICON FROM THE HEADER");
-
 
 
     }

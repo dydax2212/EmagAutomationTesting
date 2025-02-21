@@ -12,6 +12,8 @@ public class GoogleLoginPage
     WebDriver driver;
     ElementsMethods elementsMethods;
 
+    //ELEMENTE
+
     @FindBy(xpath = "//*[@class='btn btn-social google mt-md']")
     WebElement googleSignIn;
 
@@ -45,6 +47,8 @@ public class GoogleLoginPage
         this.elementsMethods = new ElementsMethods(driver);
         PageFactory.initElements(driver,this);
     }
+
+    // METODE
 
     public void fillGmailLoginForm(GoogleLoginObjectData data)
     {
