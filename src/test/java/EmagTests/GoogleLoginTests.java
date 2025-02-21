@@ -39,6 +39,8 @@ public class GoogleLoginTests extends Hooks
 
         //GOOGLE LOGIN TEST
 
+        //Use debug at line 72 from GoogleLoginPage to resolve the reCAPCHA manually
+
         googleLoginPage.fillGmailLoginForm(data);
         LoggerUtility.infoTest("All data typed and error message received.");
 

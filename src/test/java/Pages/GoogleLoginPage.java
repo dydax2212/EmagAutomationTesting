@@ -69,7 +69,7 @@ public class GoogleLoginPage
         System.out.println("Continue button clicked.");
 
         elementsMethods.waitUntilElementIsPresent(phoneField);
-        elementsMethods.fillElement(phoneField, data.getPhoneNumber());
+        elementsMethods.fillElement(phoneField, data.getPhoneNumber());  // Manually resolve the reCAPCHA and resume run.
         System.out.println("Phone number typed successfully.");
 
         elementsMethods.waitUntilElementIsPresent(trimiteSMSButton);
