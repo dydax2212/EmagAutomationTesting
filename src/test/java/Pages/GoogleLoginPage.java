@@ -54,11 +54,11 @@ public class GoogleLoginPage
         elementsMethods.fillElement(gmailField, data.getEmail());
         System.out.println("Email typed successfully.");
 
-        elementsMethods.waitForSeconds(4);
+        elementsMethods.waitForSeconds(4); //waitUntilElementIsPresent didn't work, and it gave Assert error: found as false
         elementsMethods.clickOnElement(nextStepButton);
         System.out.println("Next step button clicked.");
 
-        elementsMethods.waitForSeconds(4);
+        elementsMethods.waitForSeconds(4); //waitUntilElementIsPresent didn't work, and it gave Assert error: found as false
         elementsMethods.fillElement(gmailPasswordField, data.getPassword());
         System.out.println("Password typed successfully.");
 
