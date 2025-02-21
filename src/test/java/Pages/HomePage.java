@@ -21,7 +21,7 @@ public class HomePage
     @FindBy(css = "body > div.gdpr-cookie-banner.js-gdpr-cookie-banner.py-2.px-0.show > div > div.col-xs-12.col-sm-5.col-md-4.col-lg-3.cookie-banner-buttons > button.btn.btn-primary.btn-block.js-accept.gtm_h76e8zjgoo")
     WebElement acceptCookies;
 
-    @FindBy(xpath = "//*[text()='Refuză toate ']")
+    @FindBy(css = "body > div.gdpr-cookie-banner.js-gdpr-cookie-banner.py-2.px-0.show > div > div.col-xs-12.col-sm-5.col-md-4.col-lg-3.cookie-banner-buttons > button.btn.btn-primary.btn-block.js-refuse.gtm_bxxzbgwexm")
     WebElement rejectCookies;
 
     @FindBy(css = "body > div.main-container-outer > div.megamenu-container.megamenu-always-open > div > div.megamenu-details > div:nth-child(2) > div.megamenu-details-department-items > ul > li:nth-child(1) > div.megamenu-group.collapse.megamenu-group-4041 > a:nth-child(1)")
@@ -44,6 +44,9 @@ public class HomePage
 
     @FindBy(xpath = "//*[@class='js-dismiss-login-notice-btn dismiss-btn btn btn-link py-0 px-0']")
     WebElement stickyBlackBanner;
+
+    @FindBy(css = "body > div.gdpr-cookie-banner.js-gdpr-cookie-banner.py-2.px-0.login-view.login-view-ro.show > div > div > a")
+    WebElement loginFromBlackBanner;
 
     @FindBy(xpath = "//*[text()='Contul meu ']")
     WebElement contulMeu;
@@ -120,6 +123,13 @@ public class HomePage
         elementsMethods.waitForElementToBeClickable(stickyBlackBanner);
         elementsMethods.clickOnElement(stickyBlackBanner);
         System.out.println("Bottom sticky bar closed.");
+    }
+
+    public void clickOnLoginFromStickyBlackBanner()
+    {
+        elementsMethods.waitForElementToBeClickable(loginFromBlackBanner);
+        elementsMethods.clickOnElement(loginFromBlackBanner);
+        System.out.println("Successfully clicked on login from sticky black banner.");
     }
 
 }

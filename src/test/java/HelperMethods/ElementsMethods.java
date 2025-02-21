@@ -11,7 +11,6 @@ import java.time.Duration;
 public class ElementsMethods
 {
     WebDriver driver;
-    WebDriverWait driverWait;
 
     public ElementsMethods(WebDriver driver)
     {

@@ -29,12 +29,12 @@ public class RegisterTests extends Hooks
         registerPage = new RegisterPage(getDriver());
 
         //ACCEPT COOKIES
-  //      homePage.clickOnAcceptCookies();
-  //      elementsMethods.waitForSeconds(3);
+        homePage.clickOnAcceptCookies();
+        elementsMethods.waitForSeconds(3);
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
- //       homePage.closeBlackBanner();
-  //      elementsMethods.waitForSeconds(3);
+        homePage.closeBlackBanner();
+        elementsMethods.waitForSeconds(3);
 
         //GO TO REGISTRATION PAGE FROM MAIN WEBPAGE
         homePage.hoverContulMeu();
