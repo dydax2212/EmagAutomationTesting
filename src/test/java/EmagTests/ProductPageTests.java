@@ -25,19 +25,15 @@ public class ProductPageTests  extends Hooks
 
         //ACCEPT COOKIES
         homePage.clickOnAcceptCookies();
-        ChainTestListener.log("Cookies where accepted.");
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
         homePage.closeBlackBanner();
-        ChainTestListener.log("Login sticky black banner closed.");
 
         //HOVER ON PC, PERIFERICE & SOFTWARE
         homePage.hoverOnPeriferice();
-        ChainTestListener.log("Hover on Pc, Periferice & Software section.");
 
         //CLICK ON PLACI VIDEO
         homePage.clickOnSection();
-        ChainTestListener.log("Click on placi video section.");
 
         //CLICK ON A RANDOM PRODUCT
         productPage.selectRandomProduct();

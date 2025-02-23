@@ -1,5 +1,6 @@
 package HelperMethods;
 
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,7 +23,7 @@ public class ElementsMethods
         try {
             element.click();
         } catch (Exception e) {
-            System.out.println("Normal click failed, trying JS click for: " + element);
+            ChainTestListener.log("Normal click failed, trying JS click for: " + element);
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
         }
     }
@@ -47,7 +48,7 @@ public class ElementsMethods
             wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
         } catch (Exception e)
         {
-            System.out.println("Element is not visible or interactable: " + e.getMessage());
+            ChainTestListener.log("Element is not visible or interactable: " + e.getMessage());
         }
     }
 
@@ -64,7 +65,7 @@ public class ElementsMethods
     public void scrollToHalfPage()
     {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight / 2);");
-        System.out.println("Successfully scrolled to the middle of the page.");
+        ChainTestListener.log("Successfully scrolled to the middle of the page.");
     }
 
     public void scrollToElement(WebElement element) {
@@ -104,6 +105,4 @@ public class ElementsMethods
         Assert.assertTrue(!element.getAttribute("value").isEmpty());
         Assert.assertTrue(element.getAttribute("value").equals(text));
     }
-
-
 }

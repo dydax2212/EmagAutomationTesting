@@ -33,19 +33,15 @@ public class RegisterTests extends Hooks
 
         //ACCEPT COOKIES
         homePage.clickOnAcceptCookies();
-        ChainTestListener.log("Cookies accepted.");
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
         homePage.closeBlackBanner();
-        ChainTestListener.log("Bottom sticky banner closed.");
 
         //GO TO REGISTRATION PAGE FROM MAIN WEBPAGE
         homePage.hoverContulMeu();
-        ChainTestListener.log("Hovered on 'Contul meu'.");
 
         //CLICK ON CONT NOU TO REGISTER
         homePage.clickOnContNou();
-        ChainTestListener.log("Clicked on 'Cont nou'.");
 
         //REGISTER TEST
 

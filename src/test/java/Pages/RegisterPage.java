@@ -2,6 +2,7 @@ package Pages;
 
 import HelperMethods.ElementsMethods;
 import ObjectData.RegisterFormObjectData;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -58,46 +59,46 @@ public class RegisterPage {
     {
         elementsMethods.waitUntilElementIsPresent(emailField);
         elementsMethods.fillElement(emailField, data.getEmail());
-        System.out.println("Email typed successfully.");
+        ChainTestListener.log("Email typed successfully.");
 
         elementsMethods.waitForElementToBeClickable(loginContinueButton);
         elementsMethods.clickOnElement(loginContinueButton);
-        System.out.println("Continue button clicked.");
+        ChainTestListener.log("Continue button clicked.");
 
         elementsMethods.waitUntilElementIsPresent(nameField);
         elementsMethods.fillElement(nameField, data.getFullName());
-        System.out.println("Full name typed successfully.");
+        ChainTestListener.log("Full name typed successfully.");
 
         elementsMethods.waitUntilElementIsPresent(firstPassword);
         elementsMethods.fillElement(firstPassword, data.getPassword1());
-        System.out.println("Password typed successfully.");
+        ChainTestListener.log("Password typed successfully.");
 
         elementsMethods.waitUntilElementIsPresent(secondPassword);
         elementsMethods.fillElement(secondPassword, data.getPassword2());
-        System.out.println("Second password typed successfully.");
+        ChainTestListener.log("Second password typed successfully.");
 
         elementsMethods.waitForElementToBeClickable(acceptTerms);
         elementsMethods.clickOnElement(acceptTerms);
-        System.out.println("Accept terms checkbox clicked.");
+        ChainTestListener.log("Accept terms checkbox clicked.");
 
         elementsMethods.waitForElementToBeClickable(subscribeToNews);
         elementsMethods.clickOnElement(subscribeToNews);
-        System.out.println("Subscribe to news checkbox clicked.");
+        ChainTestListener.log("Subscribe to news checkbox clicked.");
 
         elementsMethods.waitForElementToBeClickable(registrationContinueButton);
         elementsMethods.clickOnElement(registrationContinueButton);
-        System.out.println("Continue button clicked.");
+        ChainTestListener.log("Continue button clicked.");
 
         elementsMethods.waitUntilElementIsPresent(phoneNumber);
         elementsMethods.fillElement(phoneNumber, data.getPhoneNumber());
-        System.out.println("Phone number typed successfully.");
+        ChainTestListener.log("Phone number typed successfully.");
 
         elementsMethods.waitUntilElementIsPresent(trimiteSMSButton);
         elementsMethods.clickOnElement(trimiteSMSButton);
-        System.out.println("'Trimite SMS' button clicked.");
+        ChainTestListener.log("'Trimite SMS' button clicked.");
 
         elementsMethods.waitUntilElementIsPresent(errorMessage);
         errorMessage.isDisplayed();
-        System.out.println("Error message: " + errorMessage.getText());
+        ChainTestListener.log("Error message: " + errorMessage.getText());
     }
 }

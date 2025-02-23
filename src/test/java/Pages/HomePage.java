@@ -1,6 +1,7 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -61,81 +62,82 @@ public class HomePage
     public void hoverContulMeu()
     {
         elementsMethods.hoverOnElement(contulMeu);
+        ChainTestListener.log("Hover on Contul Meu.");
     }
 
     public void clickOnContNou()
     {
         elementsMethods.clickOnElement(contNou);
+        ChainTestListener.log("Click on Cont nou.");
     }
 
     public void clickOnAcceptCookies()
     {
         elementsMethods.waitForElementToBeClickable(acceptCookies);
         elementsMethods.clickOnElement(acceptCookies);
-        System.out.println("Cookies accepted!");
+        ChainTestListener.log("Cookies accepted.");
     }
 
     public void clickOnRejectCookies()
     {
         elementsMethods.waitForElementToBeClickable(rejectCookies);
         elementsMethods.clickOnElement(rejectCookies);
-        System.out.println("Cookies rejected!");
+        ChainTestListener.log("Cookies rejected.");
     }
 
     public void hoverOnPeriferice()
     {
         elementsMethods.waitForElementToBeClickable(periferice);
         elementsMethods.hoverOnElement(periferice);
-        System.out.println("Hover on PC, Periferice & Software.");
+        ChainTestListener.log("Hover on Pc, Periferice & Software section.");
     }
 
     public void clickOnProduct()
     {
         elementsMethods.waitForElementToBeClickable(product1);
         elementsMethods.clickOnElement(product1);
-        System.out.println("Product clicked.");
+        ChainTestListener.log("First product of the page clicked.");
     }
 
     public void clickOnSection()
     {
         elementsMethods.waitForElementToBeClickable(placiVideoSection);
-        System.out.println("Wait until the element is clickable.");
         elementsMethods.clickOnElement(placiVideoSection);
-
+        ChainTestListener.log("Click on placi video section.");
     }
 
     public void clickOnEmag()
     {
         elementsMethods.waitForElementToBeClickable(emagPage);
         elementsMethods.clickOnElement(emagPage);
-        System.out.println("Click on eMAG icon.");
+        ChainTestListener.log("Click on eMAG icon.");
     }
 
     public void scrollToFooter()
     {
         elementsMethods.scrollToElement(footer);
         elementsMethods.waitForSeconds(2);
-        System.out.println("Successfully scrolled to footer.");
+        ChainTestListener.log("Successfully scrolled to footer.");
     }
     public void scrollToHeader()
     {
         elementsMethods.scrollToElement(header);
         elementsMethods.waitForSeconds(2);
-        System.out.println("Successfully scrolled to header.");
+        ChainTestListener.log("Successfully scrolled to header.");
     }
 
     public void closeBlackBanner()
     {
         elementsMethods.waitForElementToBeClickable(stickyBlackBanner);
         elementsMethods.clickOnElement(stickyBlackBanner);
-        System.out.println("Bottom sticky bar closed.");
+        ChainTestListener.log("Login sticky black banner closed.");
     }
 
     public void clickOnLoginFromStickyBlackBanner()
     {
         elementsMethods.waitUntilElementIsPresent(loginFromBlackBanner);
         elementsMethods.clickOnElement(loginFromBlackBanner);
-        System.out.println("Successfully clicked on login from sticky black banner.");
+        ChainTestListener.log("Successfully clicked on login from sticky black banner.");
     }
 
 }
