@@ -2,6 +2,9 @@
     <test name="Smoke Suite">
         <classes>
             <class name = "EmagTests.GoogleLoginTests"/>
+            <class name = "EmagTests.HomePageTests"/>
+            <class name = "EmagTests.RegisterTests"/>
+            <class name = "EmagTests.ProductPageTests"/>
         </classes>
     </test>
 </suite>

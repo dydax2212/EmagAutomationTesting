@@ -30,20 +30,21 @@ public class GoogleLoginTests extends Hooks
         elementsMethods = new ElementsMethods(getDriver());
         googleLoginPage = new GoogleLoginPage(getDriver());
 
+        ChainTestListener.log("Chrome opened");
+
         //ACCEPT COOKIES
         homePage.clickOnAcceptCookies();
         ChainTestListener.log("Cookies where accepted.");
 
-        //
+        //LOGIN FROM THE STICKY BANNER
         homePage.clickOnLoginFromStickyBlackBanner();
-        ChainTestListener.log("Clicked on login button from black banner");
+        ChainTestListener.log("Clicked on login button from black banner.");
 
         //GOOGLE LOGIN TEST
 
-        //Use debug at line 72 from GoogleLoginPage to resolve the reCAPCHA manually
-
+        // Resolve the reCAPCHA manually
+        ChainTestListener.log("Login test.");
         googleLoginPage.fillGmailLoginForm(data);
         ChainTestListener.log("All data typed and error message received.");
-
     }
 }

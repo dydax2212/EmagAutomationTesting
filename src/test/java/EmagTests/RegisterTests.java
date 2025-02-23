@@ -29,6 +29,8 @@ public class RegisterTests extends Hooks
         elementsMethods = new ElementsMethods(getDriver());
         registerPage = new RegisterPage(getDriver());
 
+        ChainTestListener.log("Chrome opened");
+
         //ACCEPT COOKIES
         homePage.clickOnAcceptCookies();
         ChainTestListener.log("Cookies accepted.");
@@ -47,6 +49,7 @@ public class RegisterTests extends Hooks
 
         //REGISTER TEST
 
+        // Resolve the reCAPCHA manually
         registerPage.fillRegistrationForm(data);
         ChainTestListener.log("Registration finished.");
     }

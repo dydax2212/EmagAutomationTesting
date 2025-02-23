@@ -17,8 +17,13 @@ public class ProductPageTests  extends Hooks
         homePage = new HomePage(getDriver());
         elementsMethods = new ElementsMethods(getDriver());
 
-        homePage.clickOnAcceptCookies();
+        ChainTestListener.log("Chrome opened");
 
+        //ACCEPT COOKIES
+        homePage.clickOnAcceptCookies();
+        ChainTestListener.log("Cookies where accepted.");
+
+        //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
         homePage.closeBlackBanner();
 
         //HOVER ON PC, PERIFERICE & SOFTWARE
