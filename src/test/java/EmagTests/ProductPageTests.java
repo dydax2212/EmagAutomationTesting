@@ -58,10 +58,8 @@ public class ProductPageTests  extends Hooks
 
         //ADD TO FAVORITE
         productPage.addToFavorites();
-        ChainTestListener.log("Product added to Favorite.");
 
         //ADD TO CART
         productPage.addToCart();
-        ChainTestListener.log("Product added to Cosul meu.");
-    }
+     }
 }
