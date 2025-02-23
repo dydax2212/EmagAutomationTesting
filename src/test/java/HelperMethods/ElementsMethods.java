@@ -42,17 +42,21 @@ public class ElementsMethods
     public void waitUntilElementIsPresent(WebElement element)
     {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
+        try
+        {
             wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("Element is not visible or interactable: " + e.getMessage());
         }
     }
 
     public void waitForSeconds(int seconds) {
-        try {
+        try
+        {
             Thread.sleep(seconds * 500L);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e)
+        {
             e.printStackTrace();
         }
     }
@@ -63,15 +67,21 @@ public class ElementsMethods
         System.out.println("Successfully scrolled to the middle of the page.");
     }
 
-    public void scrollToElement(WebElement element)
-    {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        System.out.println("Successfully scrolled to the element.");
+    public void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
     }
 
     public boolean isDisplayed(WebElement element)
     {
         return element.isDisplayed();
+    }
+
+    public boolean isElementPresent(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void fillElement(WebElement element, String text)
