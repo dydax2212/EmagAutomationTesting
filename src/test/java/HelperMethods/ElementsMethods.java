@@ -105,4 +105,22 @@ public class ElementsMethods
         Assert.assertTrue(!element.getAttribute("value").isEmpty());
         Assert.assertTrue(element.getAttribute("value").equals(text));
     }
+
+    public void sendKeys(WebElement element, String text)
+    {
+        element.clear(); // Clear existing texts
+        element.sendKeys(text);
+    }
+
+    public String getText(WebElement element)
+    {
+        return element.getText();
+    }
+
+    public void scrollByPixels(int pixels)
+    {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0," + pixels + ");");
+        ChainTestListener.log("Scrolled by " + pixels + " pixels.");
+    }
 }
