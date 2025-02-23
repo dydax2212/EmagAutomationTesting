@@ -4,8 +4,12 @@ import HelperMethods.ElementsMethods;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GeniusPage
 {
@@ -20,7 +24,7 @@ public class GeniusPage
     @FindBy(xpath = "//*[text()='Genius']")
     WebElement homePageGeniusButton;
 
-    @FindBy(xpath = "//*[@class='_input_1bhmh_1']")
+    @FindBy(id = "headlessui-combobox-input-1")
     WebElement writeLocalitateaField;
 
     @FindBy(xpath = "//*[@class='_options_1bhmh_58']")
