@@ -49,6 +49,9 @@ public class ProductPageTests  extends Hooks
         ChainTestListener.log("Successfully scrolled to Specificatii.");
         productPage.expandSpecifications();
 
+        //SCROLL TO DISCLAIMER
+        productPage.scrollToDisclaimerSection();
+
         homePage.scrollToHeader();
         ChainTestListener.log("Successfully scrolled to header.");
 

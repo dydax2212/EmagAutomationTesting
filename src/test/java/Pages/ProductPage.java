@@ -2,13 +2,15 @@ package Pages;
 
 import HelperMethods.ElementsMethods;
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
@@ -28,7 +30,7 @@ public class ProductPage
     @FindBy(xpath = "(//*[@class='page-section-title'])[1]")
     WebElement descriptionSection;
 
-    @FindBy(tagName = "//*[text()='Vezi mai mult ']")
+    @FindBy(xpath = "//*[@class='ph-widget ph-collapse-one btn btn-link p-0 fs-12 fw-bold js-description-open gtm_8fhitl']")
     WebElement expandDescriptionButton;
 
     @FindBy(xpath = "(//*[@class='page-section-title'])[2]")
@@ -36,6 +38,9 @@ public class ProductPage
 
     @FindBy(xpath = "//*[@class='ph-widget ph-collapse-one btn btn-outline-primary w-sm-100']")
     WebElement expandSpecsButton;
+
+    @FindBy(xpath = "//*[@class='disclaimer-section my-5']")
+    WebElement disclaimerSection;
 
     @FindBy(xpath = "//*[@class='gtm_t95ovv']")
     WebElement favoriteButton;
@@ -69,7 +74,10 @@ public class ProductPage
         int randomIndex = random.nextInt(products.size());
         WebElement selectedProduct = products.get(randomIndex);
 
+        Assert.assertNotNull(selectedProduct, "Error: Selected product is null!");
+
         String priceText = priceElement.isDisplayed() ? priceElement.getText() : "No price found.";
+        Assert.assertFalse(priceText.isEmpty(), "Error: No price displayed for selected product!");
 
         ChainTestListener.log("Product selected: " + selectedProduct.getText());
         ChainTestListener.log("Product price: " + priceText);
@@ -82,6 +90,8 @@ public class ProductPage
     //Scroll la descriere
     public void scrollToDescription()
     {
+        Assert.assertNotNull(descriptionSection, "Error: Descriere section is missing!");
+
         elementsMethods.scrollToElement(descriptionSection);
     }
 
@@ -93,16 +103,25 @@ public class ProductPage
             elementsMethods.scrollToElement(expandDescriptionButton);
             elementsMethods.waitForElementToBeClickable(expandDescriptionButton);
             elementsMethods.clickOnElement(expandDescriptionButton);
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            boolean expanded = wait.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(expandDescriptionButton, "aria-expanded", "true"),ExpectedConditions.visibilityOf(descriptionSection)));
+
+            Assert.assertTrue(expanded, "Error: Descriere did not expand!");
+
             ChainTestListener.log("Descriere expanded.");
         } else
         {
             ChainTestListener.log("There is no expand button for Descriere on this page.");
+            return;
         }
     }
 
     //Scroll la specificații
     public void scrollToSpecifications()
     {
+        Assert.assertNotNull(specsSection, "Error: Specificatii section is missing!");
+
         elementsMethods.scrollToElement(specsSection);
         elementsMethods.waitUntilElementIsPresent(specsSection);
     }
@@ -114,11 +133,25 @@ public class ProductPage
             elementsMethods.scrollToElement(expandSpecsButton);
             elementsMethods.waitForElementToBeClickable(expandSpecsButton);
             elementsMethods.clickOnElement(expandSpecsButton);
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            boolean expanded = wait.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(expandSpecsButton, "aria-expanded", "true"),ExpectedConditions.visibilityOf(specsSection)));
+
+            Assert.assertTrue(expanded, "Error: Specificatii did not expand!");
+
             ChainTestListener.log("Specificatii expanded.");
         } else
         {
             ChainTestListener.log("There is no expand button for Specificatii on this page.");
+            return;
         }
+    }
+
+    public void scrollToDisclaimerSection()
+    {
+        elementsMethods.scrollToElement(disclaimerSection);
+        elementsMethods.waitForSeconds(3);
+        ChainTestListener.log("Disclaimer text: " + elementsMethods.getText(disclaimerSection));
     }
 
     //Adăugare la favorite
@@ -129,6 +162,8 @@ public class ProductPage
         ChainTestListener.log("Clicked on Adauga la Favorite.");
 
         elementsMethods.waitForSeconds(2);
+
+        Assert.assertTrue(favoriteConfirmation.isDisplayed(), "Error: Favorite confirmation message not displayed!");
         ChainTestListener.log(favoriteConfirmation.getText() + ".");
     }
 
@@ -140,6 +175,9 @@ public class ProductPage
         ChainTestListener.log("Clicked on Adauga in cos.");
 
         elementsMethods.waitForSeconds(2);
+
+        Assert.assertTrue(cartConfirmation.isDisplayed(), "Error: Cart confirmation message not displayed!");
+
         ChainTestListener.log(cartConfirmation.getText() + ".");
 
         elementsMethods.clickOnElement(closeButton);

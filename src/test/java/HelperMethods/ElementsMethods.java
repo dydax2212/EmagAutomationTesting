@@ -20,9 +20,15 @@ public class ElementsMethods
 
     public void clickOnElement(WebElement element)
     {
-        try {
+        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
+        Assert.assertTrue(element.isEnabled(), "Element is not clickable!");
+
+        try
+        {
             element.click();
-        } catch (Exception e) {
+            ChainTestListener.log("Clicked on element: " + element);
+        } catch (Exception e)
+        {
             ChainTestListener.log("Normal click failed, trying JS click for: " + element);
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
         }
@@ -30,14 +36,21 @@ public class ElementsMethods
 
     public void hoverOnElement(WebElement element)
     {
+        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
+
         Actions action = new Actions(driver);
         action.moveToElement(element).perform();
+
+        ChainTestListener.log("Hovered over element: " + element);
     }
 
     public void waitForElementToBeClickable(WebElement element)
     {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(element));
+
+        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
+        ChainTestListener.log("Element is now clickable: " + element);
     }
 
     public void waitUntilElementIsPresent(WebElement element)
@@ -46,13 +59,16 @@ public class ElementsMethods
         try
         {
             wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
+            Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
+            ChainTestListener.log("Element is present and interactable: " + element);
         } catch (Exception e)
         {
             ChainTestListener.log("Element is not visible or interactable: " + e.getMessage());
         }
     }
 
-    public void waitForSeconds(int seconds) {
+    public void waitForSeconds(int seconds)
+    {
         try
         {
             Thread.sleep(seconds * 500L);
@@ -60,6 +76,7 @@ public class ElementsMethods
         {
             e.printStackTrace();
         }
+        ChainTestListener.log("Waited for " + seconds + " seconds.");
     }
 
     public void scrollToHalfPage()
@@ -68,8 +85,11 @@ public class ElementsMethods
         ChainTestListener.log("Successfully scrolled to the middle of the page.");
     }
 
-    public void scrollToElement(WebElement element) {
+    public void scrollToElement(WebElement element)
+    {
+        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+        ChainTestListener.log("Scrolled to element: " + element);
     }
 
     public boolean isDisplayed(WebElement element)
@@ -89,38 +109,48 @@ public class ElementsMethods
     {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Wait for element to be visible
         wait.until(ExpectedConditions.visibilityOf(element));
-
-        Assert.assertTrue(element.isDisplayed());
+        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
+        Assert.assertTrue(element.isEnabled(), "Element is not interactable!");
 
         String textelement = element.getAttribute("value");
-        Assert.assertTrue(textelement.isEmpty());
+        Assert.assertNotNull(textelement, "Text attribute is null!");
+        Assert.assertTrue(textelement.isEmpty(), "Field is not empty!");
 
         element.sendKeys(text);
-
-        // Wait for text to be updated in the input field
         wait.until(ExpectedConditions.attributeToBe(element, "value", text));
 
-        Assert.assertTrue(!element.getAttribute("value").isEmpty());
-        Assert.assertTrue(element.getAttribute("value").equals(text));
+        Assert.assertEquals(text, element.getAttribute("value"), "Text input failed!");
+        ChainTestListener.log("Filled element with text: " + text);
     }
 
     public void sendKeys(WebElement element, String text)
     {
-        element.clear(); // Clear existing texts
+        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
+        Assert.assertTrue(element.isEnabled(), "Element is not interactable!");
+
+        element.clear();
         element.sendKeys(text);
+
+        Assert.assertEquals(element.getAttribute("value"), text, "Text input does not match expected!");
+        ChainTestListener.log("Sent keys: '" + text + "' to element.");
     }
 
     public String getText(WebElement element)
     {
-        return element.getText();
+        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
+
+        String text = element.getText();
+        Assert.assertNotNull(text, "Element text is null!");
+        Assert.assertFalse(text.isEmpty(), "Element text is empty!");
+
+        ChainTestListener.log("Extracted text: " + text);
+        return text;
     }
 
     public void scrollByPixels(int pixels)
     {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0," + pixels + ");");
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0," + pixels + ");");
         ChainTestListener.log("Scrolled by " + pixels + " pixels.");
     }
 }
