@@ -139,5 +139,4 @@ public class HomePage
         elementsMethods.clickOnElement(loginFromBlackBanner);
         ChainTestListener.log("Successfully clicked on login from sticky black banner.");
     }
-
 }

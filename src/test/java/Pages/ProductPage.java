@@ -105,7 +105,8 @@ public class ProductPage
             elementsMethods.clickOnElement(expandDescriptionButton);
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            boolean expanded = wait.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(expandDescriptionButton, "aria-expanded", "true"),ExpectedConditions.visibilityOf(descriptionSection)));
+            boolean expanded = wait.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(expandDescriptionButton,
+                    "aria-expanded", "true"),ExpectedConditions.visibilityOf(descriptionSection)));
 
             Assert.assertTrue(expanded, "Error: Descriere did not expand!");
 

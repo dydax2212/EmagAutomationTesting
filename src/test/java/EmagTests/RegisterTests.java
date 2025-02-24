@@ -23,7 +23,7 @@ public class RegisterTests extends Hooks
     public void metodaTest()
     {
         registerFormObjectDataMap = xmlReader.loadData("src/test/resources/registerFormData.xml", RegisterFormObjectData.class);
-        RegisterFormObjectData data = registerFormObjectDataMap.get("dataSet_2");
+        RegisterFormObjectData data = registerFormObjectDataMap.get("dataSet_1");
 
         homePage = new HomePage(getDriver());
         elementsMethods = new ElementsMethods(getDriver());

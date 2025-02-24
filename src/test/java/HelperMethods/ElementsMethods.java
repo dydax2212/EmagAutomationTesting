@@ -26,10 +26,8 @@ public class ElementsMethods
         try
         {
             element.click();
-            ChainTestListener.log("Clicked on element: " + element);
         } catch (Exception e)
         {
-            ChainTestListener.log("Normal click failed, trying JS click for: " + element);
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
         }
     }
@@ -41,7 +39,6 @@ public class ElementsMethods
         Actions action = new Actions(driver);
         action.moveToElement(element).perform();
 
-        ChainTestListener.log("Hovered over element: " + element);
     }
 
     public void waitForElementToBeClickable(WebElement element)
@@ -50,7 +47,6 @@ public class ElementsMethods
         wait.until(ExpectedConditions.elementToBeClickable(element));
 
         Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
-        ChainTestListener.log("Element is now clickable: " + element);
     }
 
     public void waitUntilElementIsPresent(WebElement element)
@@ -60,7 +56,6 @@ public class ElementsMethods
         {
             wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
             Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
-            ChainTestListener.log("Element is present and interactable: " + element);
         } catch (Exception e)
         {
             ChainTestListener.log("Element is not visible or interactable: " + e.getMessage());
@@ -89,7 +84,6 @@ public class ElementsMethods
     {
         Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
-        ChainTestListener.log("Scrolled to element: " + element);
     }
 
     public boolean isDisplayed(WebElement element)

@@ -21,7 +21,6 @@ public class HomePageTests extends Hooks
 
         //ACCEPT OR REJECT COOKIES
         homePage.clickOnAcceptCookies();
-        //homePage.clickOnRejectCookies();
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
          homePage.closeBlackBanner();
