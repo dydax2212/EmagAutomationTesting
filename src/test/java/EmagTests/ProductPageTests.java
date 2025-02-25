@@ -5,7 +5,6 @@ import Pages.HomePage;
 import Pages.ProductPage;
 import ShareDataBrowser.Hooks;
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.Test;
 
 public class ProductPageTests  extends Hooks

@@ -11,6 +11,7 @@ public class ShareData
     {
         driver = new BrowserFactory().getBrowserFactory();
         driver.get("https://www.emag.ro/");
+        driver.manage().window().maximize();
     }
 
     public void clearBrowser()

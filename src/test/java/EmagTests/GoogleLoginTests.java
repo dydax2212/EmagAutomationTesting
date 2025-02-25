@@ -1,13 +1,11 @@
 package EmagTests;
 
 import HelperMethods.ElementsMethods;
-import Logger.LoggerUtility;
 import ObjectData.GoogleLoginObjectData;
 import Pages.GoogleLoginPage;
 import Pages.HomePage;
 import ShareDataBrowser.Hooks;
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import xmlReaderUtility.xmlReader;
 
