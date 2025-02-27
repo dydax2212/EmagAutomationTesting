@@ -161,11 +161,6 @@ public class ProductPage
         elementsMethods.waitForElementToBeClickable(favoriteButton);
         elementsMethods.clickOnElement(favoriteButton);
         ChainTestListener.log("Clicked on Adauga la Favorite.");
-
-        elementsMethods.waitForSeconds(2);
-
-        Assert.assertTrue(favoriteConfirmation.isDisplayed(), "Error: Favorite confirmation message not displayed!");
-        ChainTestListener.log(favoriteConfirmation.getText() + ".");
     }
 
     //Adăugare în coș
@@ -175,14 +170,20 @@ public class ProductPage
         elementsMethods.clickOnElement(addToCartButton);
         ChainTestListener.log("Clicked on Adauga in cos.");
 
-        elementsMethods.waitForSeconds(2);
-
-        Assert.assertTrue(cartConfirmation.isDisplayed(), "Error: Cart confirmation message not displayed!");
-
-        ChainTestListener.log(cartConfirmation.getText() + ".");
-
+        elementsMethods.waitUntilElementIsPresent(closeButton);
         elementsMethods.clickOnElement(closeButton);
         ChainTestListener.log("Clicked on modal close button.");
-        elementsMethods.waitForSeconds(2);
+    }
+
+    public String getCartConfirmationText()
+    {
+        elementsMethods.waitUntilElementIsPresent(cartConfirmation);
+        return cartConfirmation.getText();
+    }
+
+    public String getFavoriteConfirmationText()
+    {
+        elementsMethods.waitUntilElementIsPresent(favoriteConfirmation);
+        return favoriteConfirmation.getText();
     }
 }

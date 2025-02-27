@@ -4,12 +4,8 @@ import HelperMethods.ElementsMethods;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class GeniusPage
 {
@@ -50,6 +46,21 @@ public class GeniusPage
 
     @FindBy(xpath = "//*[@class='_subscribeButton_1b9w7_92']")
     WebElement try3MonthsButton;
+
+    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
+    WebElement emagSlider;
+
+    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
+    WebElement fashionDaysSlider;
+
+    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
+    WebElement tazzSlider;
+
+    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
+    WebElement freshfulSlider;
+
+    @FindBy(xpath = "//*[@class='_outputPrice_racfl_53']")
+    WebElement economyTotal;
 
     public GeniusPage(WebDriver driver)
     {
@@ -126,5 +137,36 @@ public class GeniusPage
         elementsMethods.clickOnElement(try3MonthsButton);
         ChainTestListener.log("Clicked on 'Incearca gratuit 3 luni' button.");
     }
+
+    public void moveEmagSlider()
+    {
+        elementsMethods.scrollToElement(emagSlider);
+        elementsMethods.moveSlider(emagSlider, 50);
+    }
+
+    public void moveFashionDaysSlider()
+    {
+        elementsMethods.scrollToElement(fashionDaysDetails);
+        elementsMethods.moveSlider(fashionDaysSlider, 10);
+    }
+
+    public void moveTazzSlider()
+    {
+        elementsMethods.scrollToElement(tazzSlider);
+        elementsMethods.moveSlider(tazzSlider, 30);
+    }
+
+    public void moveFreshfulSlider()
+    {
+        elementsMethods.scrollToElement(freshfulSlider);
+        elementsMethods.moveSlider(freshfulSlider, 80);
+    }
+
+    public void getTotal()
+    {
+        elementsMethods.scrollToElement(economyTotal);
+        ChainTestListener.log("Economy Total: " + elementsMethods.getText(economyTotal));
+    }
+
 
 }

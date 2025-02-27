@@ -5,6 +5,7 @@ import Pages.HomePage;
 import Pages.ProductPage;
 import ShareDataBrowser.Hooks;
 import com.aventstack.chaintest.plugins.ChainTestListener;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ProductPageTests  extends Hooks
@@ -38,6 +39,10 @@ public class ProductPageTests  extends Hooks
         productPage.selectRandomProduct();
         ChainTestListener.log("Random product selected.");
 
+        String currentUrl = getDriver().getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("placa"), "Error: URL-ul nu conține 'placa', produsul nu s-a deschis corect!");
+        ChainTestListener.log("URL verificat: " + currentUrl);
+
         //SCROLL TO DESCRIERE AND EXPAND
         productPage.scrollToDescription();
         ChainTestListener.log("Successfully scrolled to Descriere.");
@@ -57,7 +62,13 @@ public class ProductPageTests  extends Hooks
         //ADD TO FAVORITE
         productPage.addToFavorites();
 
+        Assert.assertEquals(productPage.getFavoriteConfirmationText(), "Produsul a fost adaugat la Favorite", "Error: Mesajul de confirmare pentru favorite nu este corect!");
+        ChainTestListener.log("Mesaj Favorite verificat: " + productPage.getFavoriteConfirmationText());
+
         //ADD TO CART
         productPage.addToCart();
+
+        Assert.assertEquals(productPage.getCartConfirmationText(), "Produsul a fost adaugat in cos", "Error: Mesajul de confirmare pentru coș nu este corect!");
+        ChainTestListener.log("Mesaj Coș verificat: " + productPage.getCartConfirmationText());
      }
 }

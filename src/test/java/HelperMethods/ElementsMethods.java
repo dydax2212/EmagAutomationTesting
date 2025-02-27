@@ -1,5 +1,6 @@
 package HelperMethods;
 
+import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -12,10 +13,22 @@ import java.time.Duration;
 public class ElementsMethods
 {
     WebDriver driver;
+    Actions actions;
 
     public ElementsMethods(WebDriver driver)
     {
         this.driver = driver;
+        this.actions = new Actions(driver);
+    }
+
+    public String getElementText(WebElement element) {
+        String text = element.getText();
+        LoggerUtility.infoTest("Element text is: " + text);
+        return text;
+    }
+
+    private String getElementInfo(WebElement element) {
+        return element.toString().split("->")[1]; // Extracts locator information
     }
 
     public void clickOnElement(WebElement element)
@@ -25,6 +38,7 @@ public class ElementsMethods
 
         try
         {
+            LoggerUtility.infoTest("Clicking on element: " + getElementInfo(element));
             element.click();
         } catch (Exception e)
         {
@@ -86,9 +100,12 @@ public class ElementsMethods
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
     }
 
-    public boolean isDisplayed(WebElement element)
+    public void moveSlider(WebElement slider, int offset)
     {
-        return element.isDisplayed();
+        actions.clickAndHold(slider)
+                .moveByOffset(offset, 0)
+                .release()
+                .perform();
     }
 
     public boolean isElementPresent(WebElement element) {
@@ -124,6 +141,7 @@ public class ElementsMethods
         Assert.assertTrue(element.isEnabled(), "Element is not interactable!");
 
         element.clear();
+        LoggerUtility.infoTest("Typing text: '" + text + "' into element: " + getElementInfo(element));
         element.sendKeys(text);
 
         Assert.assertEquals(element.getAttribute("value"), text, "Text input does not match expected!");
@@ -138,6 +156,7 @@ public class ElementsMethods
         Assert.assertNotNull(text, "Element text is null!");
         Assert.assertFalse(text.isEmpty(), "Element text is empty!");
 
+        LoggerUtility.infoTest("Element text is: " + text);
         ChainTestListener.log("Extracted text: " + text);
         return text;
     }
