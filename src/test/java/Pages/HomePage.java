@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class HomePage
 {
@@ -59,84 +60,89 @@ public class HomePage
 
     // METODE
 
-    public void hoverContulMeu()
-    {
+    public void hoverContulMeu() {
+        Assert.assertTrue(contulMeu.isDisplayed(), "'Contul Meu' nu este vizibil!");
         elementsMethods.hoverOnElement(contulMeu);
-        ChainTestListener.log("Hover on Contul Meu.");
+        ChainTestListener.log("Hover pe 'Contul Meu' efectuat cu succes.");
     }
 
-    public void clickOnContNou()
-    {
+    public void clickOnContNou() {
+        Assert.assertTrue(contNou.isDisplayed(), "'Cont Nou' nu este vizibil!");
+        Assert.assertTrue(contNou.isEnabled(), "'Cont Nou' nu este clicabil!");
         elementsMethods.clickOnElement(contNou);
-        ChainTestListener.log("Click on Cont nou.");
+        ChainTestListener.log("Click pe 'Cont Nou' efectuat cu succes.");
     }
 
-    public void clickOnAcceptCookies()
-    {
+    public void clickOnAcceptCookies() {
         elementsMethods.waitForElementToBeClickable(acceptCookies);
+        Assert.assertTrue(acceptCookies.isDisplayed(), "Butonul 'Accept Cookies' nu este vizibil!");
         elementsMethods.clickOnElement(acceptCookies);
-        ChainTestListener.log("Cookies accepted.");
+        ChainTestListener.log("Cookies acceptate cu succes.");
     }
 
-    public void clickOnRejectCookies()
-    {
+    public void clickOnRejectCookies() {
         elementsMethods.waitForElementToBeClickable(rejectCookies);
+        Assert.assertTrue(rejectCookies.isDisplayed(), "Butonul 'Reject Cookies' nu este vizibil!");
         elementsMethods.clickOnElement(rejectCookies);
-        ChainTestListener.log("Cookies rejected.");
+        ChainTestListener.log("Cookies respinse cu succes.");
     }
 
-    public void hoverOnPeriferice()
-    {
-        elementsMethods.waitForElementToBeClickable(periferice);
+    public void hoverOnPeriferice() {
+        elementsMethods.waitUntilElementIsPresent(periferice);
         elementsMethods.hoverOnElement(periferice);
-        ChainTestListener.log("Hover on Pc, Periferice & Software section.");
+
+        elementsMethods.waitUntilElementIsPresent(placiVideoSection);
+        Assert.assertTrue(placiVideoSection.isDisplayed(), "Secțiunea 'Plăci Video' nu este vizibilă!");
+        elementsMethods.hoverOnElement(placiVideoSection);
+        ChainTestListener.log("Hover pe 'Plăci Video' efectuat cu succes.");
     }
 
-    public void clickOnProduct()
-    {
+    public void clickOnProduct() {
         elementsMethods.waitForElementToBeClickable(product1);
+        Assert.assertTrue(product1.isDisplayed(), "Produsul nu este vizibil!");
         elementsMethods.clickOnElement(product1);
-        ChainTestListener.log("First product of the page clicked.");
+        ChainTestListener.log("Click pe primul produs efectuat.");
     }
 
-    public void clickOnSection()
-    {
+    public void clickOnSection() {
         elementsMethods.waitForElementToBeClickable(placiVideoSection);
+        Assert.assertTrue(placiVideoSection.isDisplayed(), "Secțiunea 'Plăci Video' nu este vizibilă!");
         elementsMethods.clickOnElement(placiVideoSection);
-        ChainTestListener.log("Click on placi video section.");
+        ChainTestListener.log("Click pe 'Plăci Video' efectuat cu succes.");
     }
 
-    public void clickOnEmag()
-    {
+    public void clickOnEmag() {
         elementsMethods.waitForElementToBeClickable(emagPage);
+        Assert.assertTrue(emagPage.isDisplayed(), "Logo-ul eMAG nu este vizibil!");
         elementsMethods.clickOnElement(emagPage);
-        ChainTestListener.log("Click on eMAG icon.");
+        ChainTestListener.log("Click pe logo-ul eMAG efectuat.");
     }
 
-    public void scrollToFooter()
-    {
+    public void scrollToFooter() {
         elementsMethods.scrollToElement(footer);
         elementsMethods.waitForSeconds(2);
-        ChainTestListener.log("Successfully scrolled to footer.");
+        Assert.assertTrue(footer.isDisplayed(), "Footer-ul nu este vizibil după scroll!");
+        ChainTestListener.log("Scroll la footer efectuat cu succes.");
     }
-    public void scrollToHeader()
-    {
+
+    public void scrollToHeader() {
         elementsMethods.scrollToElement(header);
         elementsMethods.waitForSeconds(2);
-        ChainTestListener.log("Successfully scrolled to header.");
+        Assert.assertTrue(header.isDisplayed(), "Header-ul nu este vizibil după scroll!");
+        ChainTestListener.log("Scroll la header efectuat cu succes.");
     }
 
-    public void closeBlackBanner()
-    {
+    public void closeBlackBanner() {
         elementsMethods.waitForElementToBeClickable(stickyBlackBanner);
+        Assert.assertTrue(stickyBlackBanner.isDisplayed(), "Banner-ul negru nu este vizibil!");
         elementsMethods.clickOnElement(stickyBlackBanner);
-        ChainTestListener.log("Login sticky black banner closed.");
+        ChainTestListener.log("Banner-ul negru închis cu succes.");
     }
 
-    public void clickOnLoginFromStickyBlackBanner()
-    {
+    public void clickOnLoginFromStickyBlackBanner() {
         elementsMethods.waitUntilElementIsPresent(loginFromBlackBanner);
+        Assert.assertTrue(loginFromBlackBanner.isDisplayed(), "Butonul 'Login' din banner-ul negru nu este vizibil!");
         elementsMethods.clickOnElement(loginFromBlackBanner);
-        ChainTestListener.log("Successfully clicked on login from sticky black banner.");
+        ChainTestListener.log("Click pe 'Login' din banner-ul negru efectuat.");
     }
 }

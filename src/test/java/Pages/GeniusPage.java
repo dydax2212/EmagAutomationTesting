@@ -1,16 +1,17 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.ShadowDOMHelper;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class GeniusPage
-{
+public class GeniusPage {
     WebDriver driver;
     ElementsMethods elementsMethods;
+    ShadowDOMHelper shadowDOMHelper;
 
     //ELEMENTE
 
@@ -62,29 +63,26 @@ public class GeniusPage
     @FindBy(xpath = "//*[@class='_outputPrice_racfl_53']")
     WebElement economyTotal;
 
-    public GeniusPage(WebDriver driver)
-    {
+    public GeniusPage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
-        PageFactory.initElements(driver,this);
+        this.shadowDOMHelper = new ShadowDOMHelper(driver);
+        PageFactory.initElements(driver, this);
     }
 
     // METODE
 
-    public void locateNavBar()
-    {
+    public void locateNavBar() {
         elementsMethods.waitUntilElementIsPresent(navBar);
         ChainTestListener.log("Navbar has been located.");
     }
 
-    public void clickOnGeniusButton()
-    {
+    public void clickOnGeniusButton() {
         elementsMethods.clickOnElement(homePageGeniusButton);
         ChainTestListener.log("Clicked on Genius button.");
     }
 
-    public void writeInLocalitateField(String localitate)
-    {
+    public void writeInLocalitateField(String localitate) {
         elementsMethods.waitUntilElementIsPresent(writeLocalitateaField);
         elementsMethods.clickOnElement(writeLocalitateaField);
 
@@ -95,75 +93,63 @@ public class GeniusPage
         elementsMethods.clickOnElement(clickOnResult);
     }
 
-    public void clickOnLocalitateDropdownButton()
-    {
+    public void clickOnLocalitateDropdownButton() {
         elementsMethods.clickOnElement(localitateDropdownList);
         ChainTestListener.log("Selected locality from dropdown.");
     }
 
-    public void printAvailabilityMessage()
-    {
+    public void printAvailabilityMessage() {
         String message = elementsMethods.getText(availabilityMessage);
         ChainTestListener.log("Availability message: " + message);
     }
 
-    public void clickOnEmagDetails()
-    {
+    public void clickOnEmagDetails() {
         elementsMethods.clickOnElement(emagDetails);
         elementsMethods.scrollByPixels(100);
         ChainTestListener.log("Accessed eMAG tab.");
     }
 
-    public void clickOnTazzDetails()
-    {
+    public void clickOnTazzDetails() {
         elementsMethods.clickOnElement(tazzDetails);
         ChainTestListener.log("Accessed Tazz tab.");
     }
 
-    public void clickOnFashionDaysDetails()
-    {
+    public void clickOnFashionDaysDetails() {
         elementsMethods.clickOnElement(fashionDaysDetails);
         ChainTestListener.log("Accessed Fashion Days tab.");
     }
 
-    public void clickOnFreshfulDetails()
-    {
+    public void clickOnFreshfulDetails() {
         elementsMethods.clickOnElement(freshfulDetails);
         ChainTestListener.log("Accessed Freshful tab.");
     }
 
-    public void clickOnTryFor3Months()
-    {
+    public void clickOnTryFor3Months() {
         elementsMethods.clickOnElement(try3MonthsButton);
         ChainTestListener.log("Clicked on 'Incearca gratuit 3 luni' button.");
     }
 
-    public void moveEmagSlider()
-    {
+    public void moveEmagSlider() {
         elementsMethods.scrollToElement(emagSlider);
         elementsMethods.moveSlider(emagSlider, 50);
     }
 
-    public void moveFashionDaysSlider()
-    {
+    public void moveFashionDaysSlider() {
         elementsMethods.scrollToElement(fashionDaysDetails);
         elementsMethods.moveSlider(fashionDaysSlider, 10);
     }
 
-    public void moveTazzSlider()
-    {
+    public void moveTazzSlider() {
         elementsMethods.scrollToElement(tazzSlider);
         elementsMethods.moveSlider(tazzSlider, 30);
     }
 
-    public void moveFreshfulSlider()
-    {
+    public void moveFreshfulSlider() {
         elementsMethods.scrollToElement(freshfulSlider);
         elementsMethods.moveSlider(freshfulSlider, 80);
     }
 
-    public void getTotal()
-    {
+    public void getTotal() {
         elementsMethods.scrollToElement(economyTotal);
         ChainTestListener.log("Economy Total: " + elementsMethods.getText(economyTotal));
     }

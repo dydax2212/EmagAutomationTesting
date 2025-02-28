@@ -55,8 +55,7 @@ public class RegisterPage {
 
     // METODE
 
-    public void fillRegistrationForm(RegisterFormObjectData data)
-    {
+    public void fillRegistrationForm(RegisterFormObjectData data) {
         elementsMethods.waitUntilElementIsPresent(emailField);
         elementsMethods.fillElement(emailField, data.getEmail());
         ChainTestListener.log("Email typed successfully.");

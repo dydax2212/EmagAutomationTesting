@@ -6,15 +6,13 @@ import Pages.HomePage;
 import ShareDataBrowser.Hooks;
 import org.testng.annotations.Test;
 
-public class GeniusTests extends Hooks
-{
+public class GeniusTests extends Hooks {
     HomePage homePage;
     ElementsMethods elementsMethods;
     GeniusPage geniusPage;
 
     @Test
-    public void metodaTest()
-    {
+    public void metodaTest() {
         homePage = new HomePage(getDriver());
         elementsMethods = new ElementsMethods(getDriver());
         geniusPage = new GeniusPage(getDriver());
@@ -24,7 +22,6 @@ public class GeniusTests extends Hooks
 
         homePage.closeBlackBanner();
 
-
         geniusPage.locateNavBar();
 
         // Click on the Genius button from the homepage
@@ -32,7 +29,7 @@ public class GeniusTests extends Hooks
 
         // Enter locality and select from dropdown
         geniusPage.writeInLocalitateField("Sector 1");
-     //   geniusPage.clickOnLocalitateDropdownButton();
+        geniusPage.clickOnLocalitateDropdownButton();
 
         // Print availability message
         geniusPage.printAvailabilityMessage();

@@ -14,24 +14,20 @@ import java.io.IOException;
 
 @Listeners(ChainTestListener.class)
 
-public class Hooks extends ShareData
-{
+public class Hooks extends ShareData {
     String testName;
 
     @BeforeMethod
-    public void prepareEnvironment()
-    {
+    public void prepareEnvironment() {
         testName = this.getClass().getSimpleName();
         initializeBrowser();
         LoggerUtility.startTestCase(testName);
     }
 
     @AfterMethod
-    public void clearEnvironment(ITestResult result) throws IOException
-    {
-        if (result.getStatus() == ITestResult.FAILURE)
-        {
-           byte[] screenShot = ChainUtility.getScreenShot(getDriver(), testName);
+    public void clearEnvironment(ITestResult result) throws IOException {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            byte[] screenShot = ChainUtility.getScreenShot(getDriver(), testName);
             ChainTestListener.embed(screenShot, "image/png");
             LoggerUtility.errorLog(result.getThrowable().getMessage());
         }
@@ -41,8 +37,7 @@ public class Hooks extends ShareData
     }
 
     @AfterSuite
-    public void finishLogs()
-    {
+    public void finishLogs() {
         LoggerUtility.mergeFilesIntoOne();
     }
 }

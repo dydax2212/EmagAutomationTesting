@@ -6,42 +6,36 @@ import org.apache.logging.log4j.ThreadContext;
 
 import java.io.*;
 
-public class LoggerUtility
-{
+public class LoggerUtility {
     private static final String suiteLogsPath = "target/logs/suite/";
     private static final String regressionSuiteLogPath = "target/logs/";
     private static final Logger logger = LogManager.getLogger();
 
-    public static synchronized void startTestCase(String testName)
-    {
+    public static synchronized void startTestCase(String testName) {
         ThreadContext.put("threadName", testName);
         logger.info("----------Execution started " + testName + "----------");
     }
 
-    public static synchronized void endTestCase(String testName)
-    {
+    public static synchronized void endTestCase(String testName) {
         logger.info("----------Execution ended " + testName + "----------");
     }
 
     public static synchronized void infoTest(String stepName)  // stepName! stepName! I'm stuck in the washer machine!
     {
-        logger.info(Thread.currentThread().getName() + ": " +getCallInfo());
+        logger.info(Thread.currentThread().getName() + ": " + getCallInfo());
     }
 
-    public static synchronized void errorLog(String errorName)
-    {
+    public static synchronized void errorLog(String errorName) {
         logger.info(Thread.currentThread().getName() + ": " + getCallInfo() + errorName);
     }
 
-    public static synchronized String getCallInfo()
-    {
+    public static synchronized String getCallInfo() {
         String className = Thread.currentThread().getStackTrace()[3].getClassName();
         String methodName = Thread.currentThread().getStackTrace()[3].getMethodName();
         return className + " " + methodName;
     }
 
-    public static void mergeFilesIntoOne()
-    {
+    public static void mergeFilesIntoOne() {
         File dir = new File(suiteLogsPath);
         String[] fileNames = dir.list();
         PrintWriter pW = null;
@@ -58,8 +52,7 @@ public class LoggerUtility
                 }
                 pW.flush();
             }
-        }catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }

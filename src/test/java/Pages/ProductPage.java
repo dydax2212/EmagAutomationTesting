@@ -14,8 +14,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
-public class ProductPage
-{
+public class ProductPage {
     WebDriver driver;
     ElementsMethods elementsMethods;
 
@@ -57,8 +56,7 @@ public class ProductPage
     @FindBy(xpath = "//*[@class='em em-close d-none d-sm-block gtm_6046yfqs']")
     WebElement closeButton;
 
-    public ProductPage(WebDriver driver)
-    {
+    public ProductPage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
         PageFactory.initElements(driver, this);
@@ -66,8 +64,7 @@ public class ProductPage
 
     //METODE
 
-    public void selectRandomProduct()
-    {
+    public void selectRandomProduct() {
         Assert.assertFalse(products.isEmpty(), "Error: No product found!");
 
         Random random = new Random();
@@ -88,39 +85,34 @@ public class ProductPage
     }
 
     //Scroll la descriere
-    public void scrollToDescription()
-    {
+    public void scrollToDescription() {
         Assert.assertNotNull(descriptionSection, "Error: Descriere section is missing!");
 
         elementsMethods.scrollToElement(descriptionSection);
     }
 
     //Expandare descriere
-    public void expandDescription()
-    {
-        if (elementsMethods.isElementPresent(expandDescriptionButton))
-        {
+    public void expandDescription() {
+        if (elementsMethods.isElementPresent(expandDescriptionButton)) {
             elementsMethods.scrollToElement(expandDescriptionButton);
             elementsMethods.waitForElementToBeClickable(expandDescriptionButton);
             elementsMethods.clickOnElement(expandDescriptionButton);
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             boolean expanded = wait.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(expandDescriptionButton,
-                    "aria-expanded", "true"),ExpectedConditions.visibilityOf(descriptionSection)));
+                    "aria-expanded", "true"), ExpectedConditions.visibilityOf(descriptionSection)));
 
             Assert.assertTrue(expanded, "Error: Descriere did not expand!");
 
             ChainTestListener.log("Descriere expanded.");
-        } else
-        {
+        } else {
             ChainTestListener.log("There is no expand button for Descriere on this page.");
             return;
         }
     }
 
     //Scroll la specificații
-    public void scrollToSpecifications()
-    {
+    public void scrollToSpecifications() {
         Assert.assertNotNull(specsSection, "Error: Specificatii section is missing!");
 
         elementsMethods.scrollToElement(specsSection);
@@ -129,43 +121,38 @@ public class ProductPage
 
     //Expandare specificații
     public void expandSpecifications() {
-        if (elementsMethods.isElementPresent(expandSpecsButton))
-        {
+        if (elementsMethods.isElementPresent(expandSpecsButton)) {
             elementsMethods.scrollToElement(expandSpecsButton);
             elementsMethods.waitForElementToBeClickable(expandSpecsButton);
             elementsMethods.clickOnElement(expandSpecsButton);
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            boolean expanded = wait.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(expandSpecsButton, "aria-expanded", "true"),ExpectedConditions.visibilityOf(specsSection)));
+            boolean expanded = wait.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(expandSpecsButton, "aria-expanded", "true"), ExpectedConditions.visibilityOf(specsSection)));
 
             Assert.assertTrue(expanded, "Error: Specificatii did not expand!");
 
             ChainTestListener.log("Specificatii expanded.");
-        } else
-        {
+        } else {
             ChainTestListener.log("There is no expand button for Specificatii on this page.");
             return;
         }
     }
 
-    public void scrollToDisclaimerSection()
-    {
+    public void scrollToDisclaimerSection() {
         elementsMethods.scrollToElement(disclaimerSection);
         elementsMethods.waitForSeconds(3);
         ChainTestListener.log("Disclaimer text: " + elementsMethods.getText(disclaimerSection));
     }
 
     //Adăugare la favorite
-    public void addToFavorites()
-    {
+    public void addToFavorites() {
         elementsMethods.waitForElementToBeClickable(favoriteButton);
         elementsMethods.clickOnElement(favoriteButton);
         ChainTestListener.log("Clicked on Adauga la Favorite.");
     }
 
     //Adăugare în coș
-    public void addToCart()
-    {
+    public void addToCart() {
         elementsMethods.waitForElementToBeClickable(addToCartButton);
         elementsMethods.clickOnElement(addToCartButton);
         ChainTestListener.log("Clicked on Adauga in cos.");
@@ -175,14 +162,12 @@ public class ProductPage
         ChainTestListener.log("Clicked on modal close button.");
     }
 
-    public String getCartConfirmationText()
-    {
+    public String getCartConfirmationText() {
         elementsMethods.waitUntilElementIsPresent(cartConfirmation);
         return cartConfirmation.getText();
     }
 
-    public String getFavoriteConfirmationText()
-    {
+    public String getFavoriteConfirmationText() {
         elementsMethods.waitUntilElementIsPresent(favoriteConfirmation);
         return favoriteConfirmation.getText();
     }

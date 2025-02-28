@@ -8,15 +8,13 @@ import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ProductPageTests  extends Hooks
-{
+public class ProductPageTests extends Hooks {
     HomePage homePage;
     ElementsMethods elementsMethods;
     ProductPage productPage;
 
     @Test
-    public void metodaTest()
-    {
+    public void metodaTest() {
         homePage = new HomePage(getDriver());
         elementsMethods = new ElementsMethods(getDriver());
         productPage = new ProductPage(getDriver());
@@ -70,5 +68,5 @@ public class ProductPageTests  extends Hooks
 
         Assert.assertEquals(productPage.getCartConfirmationText(), "Produsul a fost adaugat in cos", "Error: Mesajul de confirmare pentru coș nu este corect!");
         ChainTestListener.log("Mesaj Coș verificat: " + productPage.getCartConfirmationText());
-     }
+    }
 }
