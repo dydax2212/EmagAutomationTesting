@@ -1,158 +1,135 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
-import HelperMethods.ShadowDOMHelper;
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
 public class GeniusPage {
     WebDriver driver;
     ElementsMethods elementsMethods;
-    ShadowDOMHelper shadowDOMHelper;
-
-    //ELEMENTE
-
-    @FindBy(xpath = "//*[@class='navbar-aux-content collapse navbar-collapse']")
-    WebElement navBar;
-
-    @FindBy(xpath = "//*[text()='Genius']")
-    WebElement homePageGeniusButton;
-
-    @FindBy(id = "headlessui-combobox-input-1")
-    WebElement writeLocalitateaField;
-
-    @FindBy(xpath = "//*[@class='_options_1bhmh_58']")
-    WebElement localitateDropdownList;
-
-    @FindBy(id = "headlessui-combobox-option-125")
-    WebElement clickOnResult;
-
-    @FindBy(xpath = "//*[@class='_availability_1b9w7_47']")
-    WebElement availabilityMessage;
-
-    @FindBy(xpath = "(//*[@class='_tab_18qh2_4'])[1]")
-    WebElement emagDetails;
-
-    @FindBy(xpath = "(//*[@class='_tab_18qh2_4'])[2]")
-    WebElement tazzDetails;
-
-    @FindBy(xpath = "(//*[@class='_tab_18qh2_4'])[3]")
-    WebElement fashionDaysDetails;
-
-    @FindBy(xpath = "(//*[@class='_tab_18qh2_4'])[4]")
-    WebElement freshfulDetails;
-
-    @FindBy(xpath = "//*[@class='_subscribeButton_1b9w7_92']")
-    WebElement try3MonthsButton;
-
-    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
-    WebElement emagSlider;
-
-    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
-    WebElement fashionDaysSlider;
-
-    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
-    WebElement tazzSlider;
-
-    @FindBy(xpath = "(//*[@class='_savingsCalculatorInput_682cl_1 _input_racfl_42'])[1]")
-    WebElement freshfulSlider;
-
-    @FindBy(xpath = "//*[@class='_outputPrice_racfl_53']")
-    WebElement economyTotal;
 
     public GeniusPage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
-        this.shadowDOMHelper = new ShadowDOMHelper(driver);
         PageFactory.initElements(driver, this);
     }
 
     // METODE
 
-    public void locateNavBar() {
-        elementsMethods.waitUntilElementIsPresent(navBar);
-        ChainTestListener.log("Navbar has been located.");
-    }
-
-    public void clickOnGeniusButton() {
-        elementsMethods.clickOnElement(homePageGeniusButton);
-        ChainTestListener.log("Clicked on Genius button.");
-    }
-
-    public void writeInLocalitateField(String localitate) {
-        elementsMethods.waitUntilElementIsPresent(writeLocalitateaField);
-        elementsMethods.clickOnElement(writeLocalitateaField);
-
-        elementsMethods.sendKeys(writeLocalitateaField, localitate);
-
-        elementsMethods.waitUntilElementIsPresent(clickOnResult);
-        ChainTestListener.log("Typed: " + localitate);
-        elementsMethods.clickOnElement(clickOnResult);
-    }
-
-    public void clickOnLocalitateDropdownButton() {
-        elementsMethods.clickOnElement(localitateDropdownList);
-        ChainTestListener.log("Selected locality from dropdown.");
-    }
-
-    public void printAvailabilityMessage() {
-        String message = elementsMethods.getText(availabilityMessage);
-        ChainTestListener.log("Availability message: " + message);
+    public void verifyGeniusURL()
+    {
+        elementsMethods.verifyUrl("https://www.emag.ro/genius?ref=hdr_genius");
     }
 
     public void clickOnEmagDetails() {
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement emagDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-879"));
+
+        elementsMethods.waitForElementToBeClickable(emagDetails);
         elementsMethods.clickOnElement(emagDetails);
-        elementsMethods.scrollByPixels(100);
+        elementsMethods.scrollByPixels(500);
         ChainTestListener.log("Accessed eMAG tab.");
     }
 
     public void clickOnTazzDetails() {
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement tazzDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-880"));
+
+        elementsMethods.waitForElementToBeClickable(tazzDetails);
         elementsMethods.clickOnElement(tazzDetails);
         ChainTestListener.log("Accessed Tazz tab.");
     }
 
     public void clickOnFashionDaysDetails() {
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement fashionDaysDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-881"));
+
+        elementsMethods.waitForElementToBeClickable(fashionDaysDetails);
         elementsMethods.clickOnElement(fashionDaysDetails);
         ChainTestListener.log("Accessed Fashion Days tab.");
     }
 
     public void clickOnFreshfulDetails() {
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement freshfulDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-882"));
+
+        elementsMethods.waitForElementToBeClickable(freshfulDetails);
         elementsMethods.clickOnElement(freshfulDetails);
         ChainTestListener.log("Accessed Freshful tab.");
     }
 
     public void clickOnTryFor3Months() {
-        elementsMethods.clickOnElement(try3MonthsButton);
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement tryFor3Months = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div:nth-child(5) > button"));
+
+        elementsMethods.waitUntilElementIsPresent(tryFor3Months);
+        elementsMethods.clickOnElement(tryFor3Months);
         ChainTestListener.log("Clicked on 'Incearca gratuit 3 luni' button.");
+
+        elementsMethods.waitForSeconds(2);
     }
 
     public void moveEmagSlider() {
-        elementsMethods.scrollToElement(emagSlider);
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement emagSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(2) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+
+        elementsMethods.waitUntilElementIsPresent(emagSlider);
         elementsMethods.moveSlider(emagSlider, 50);
     }
 
     public void moveFashionDaysSlider() {
-        elementsMethods.scrollToElement(fashionDaysDetails);
-        elementsMethods.moveSlider(fashionDaysSlider, 10);
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement fashionDaysSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(3) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+
+        elementsMethods.waitUntilElementIsPresent(fashionDaysSlider);
+        elementsMethods.moveSlider(fashionDaysSlider, -80);
     }
 
     public void moveTazzSlider() {
-        elementsMethods.scrollToElement(tazzSlider);
-        elementsMethods.moveSlider(tazzSlider, 30);
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement tazzSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(4) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+
+        elementsMethods.waitUntilElementIsPresent(tazzSlider);
+        elementsMethods.moveSlider(tazzSlider, -50);
     }
 
     public void moveFreshfulSlider() {
-        elementsMethods.scrollToElement(freshfulSlider);
-        elementsMethods.moveSlider(freshfulSlider, 80);
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement freshfulSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(5) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+
+        elementsMethods.waitUntilElementIsPresent(freshfulSlider);
+        elementsMethods.moveSlider(freshfulSlider, 70);
     }
 
     public void getTotal() {
-        elementsMethods.scrollToElement(economyTotal);
-        ChainTestListener.log("Economy Total: " + elementsMethods.getText(economyTotal));
+        WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
+        SearchContext shadowRoot = shadowHost.getShadowRoot();
+
+        WebElement economyTotal = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > div._outputPrice_racfl_53"));
+
+        elementsMethods.waitUntilElementIsPresent(economyTotal);
+        ChainTestListener.log("Economy Total: " + economyTotal.getText());
     }
+
 
 
 }

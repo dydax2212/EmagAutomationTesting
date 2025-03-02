@@ -15,6 +15,12 @@ public class HomePage
 
     //ELEMENTE
 
+    @FindBy(xpath = "//*[@class='navbar-aux-content collapse navbar-collapse']")
+    WebElement navBar;
+
+    @FindBy(xpath = "(//*[@class='fs-12  visible-md visible-lg visible-xl'])[1]")
+    WebElement homePageGeniusButton;
+
     @FindBy(css = "body > div.gdpr-cookie-banner.js-gdpr-cookie-banner.py-2.px-0.show > div > div.col-xs-12.col-sm-5.col-md-4.col-lg-3.cookie-banner-buttons > button.btn.btn-primary.btn-block.js-accept.gtm_h76e8zjgoo")
     WebElement acceptCookies;
 
@@ -59,6 +65,18 @@ public class HomePage
     }
 
     // METODE
+
+    public void locateNavBar() {
+        elementsMethods.waitUntilElementIsPresent(navBar);
+        ChainTestListener.log("Navbar has been located.");
+    }
+
+    public void clickOnGeniusButton() {
+        elementsMethods.waitUntilElementIsPresent(homePageGeniusButton);
+        elementsMethods.clickOnElement(homePageGeniusButton);
+        ChainTestListener.log("Clicked on Genius button.");
+        elementsMethods.waitForSeconds(5);
+    }
 
     public void hoverContulMeu() {
         Assert.assertTrue(contulMeu.isDisplayed(), "'Contul Meu' nu este vizibil!");

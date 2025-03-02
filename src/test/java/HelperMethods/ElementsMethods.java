@@ -20,12 +20,6 @@ public class ElementsMethods extends CommonMethods {
         this.actions = new Actions(driver);
     }
 
-    public String getElementText(WebElement element) {
-        String text = element.getText();
-        LoggerUtility.infoTest("Element text is: " + text);
-        return text;
-    }
-
     private String getElementInfo(WebElement element) {
         return element.toString().split("->")[1]; // Extracts locator information
     }
@@ -69,20 +63,10 @@ public class ElementsMethods extends CommonMethods {
         LoggerUtility.infoTest("Filled element with text: " + text);
     }
 
-    public void sendKeys(WebElement element, String text) {
-        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
-        Assert.assertTrue(element.isEnabled(), "Element is not interactable!");
-
-        element.clear();
-        LoggerUtility.infoTest("Typing text: '" + text + "' into element: " + getElementInfo(element));
-        element.sendKeys(text);
-
-        Assert.assertEquals(element.getAttribute("value"), text, "Text input does not match expected!");
-    }
-
-    public void moveSlider(WebElement slider, int offset) {
-        actions.clickAndHold(slider)
-                .moveByOffset(offset, 0)
+    public void moveSlider(WebElement sliderHandle, int xOffset) {
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(sliderHandle)
+                .moveByOffset(xOffset, 0)
                 .release()
                 .perform();
     }

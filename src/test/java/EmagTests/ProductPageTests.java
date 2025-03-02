@@ -1,6 +1,7 @@
 package EmagTests;
 
 import HelperMethods.ElementsMethods;
+import Logger.LoggerUtility;
 import Pages.HomePage;
 import Pages.ProductPage;
 import ShareDataBrowser.Hooks;
@@ -19,10 +20,13 @@ public class ProductPageTests extends Hooks {
         elementsMethods = new ElementsMethods(getDriver());
         productPage = new ProductPage(getDriver());
 
-        ChainTestListener.log("Chrome opened.");
+        LoggerUtility.infoTest("Test started: Navigating on eMAG website");
+        ChainTestListener.log("Chrome opened");
 
         //ACCEPT COOKIES
+        Assert.assertNotNull(homePage, "HomePage object is null!");
         homePage.clickOnAcceptCookies();
+        LoggerUtility.infoTest("Cookies accepted.");
 
         //CLOSE LOGIN STICKY BANNER FROM THE BOTTOM OF THE WEBPAGE
         homePage.closeBlackBanner();
@@ -68,5 +72,7 @@ public class ProductPageTests extends Hooks {
 
         Assert.assertEquals(productPage.getCartConfirmationText(), "Produsul a fost adaugat in cos", "Error: Mesajul de confirmare pentru coș nu este corect!");
         ChainTestListener.log("Mesaj Coș verificat: " + productPage.getCartConfirmationText());
+
+        LoggerUtility.infoTest("Test finished successfully.");
     }
 }

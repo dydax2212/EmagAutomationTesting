@@ -1,8 +1,10 @@
 package EmagTests;
 
 import HelperMethods.ElementsMethods;
+import Logger.LoggerUtility;
 import Pages.HomePage;
 import ShareDataBrowser.Hooks;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.testng.annotations.Test;
 
 public class FavoriteTests  extends Hooks
@@ -16,11 +18,14 @@ public class FavoriteTests  extends Hooks
         homePage = new HomePage(getDriver());
         elementsMethods = new ElementsMethods(getDriver());
 
+        LoggerUtility.infoTest("Test started: Navigating on eMAG website");
+        ChainTestListener.log("Chrome opened");
+
         homePage.clickOnAcceptCookies();
-//      homePage.clickOnRejectCookies();
 
         homePage.closeBlackBanner();
 
 
+        LoggerUtility.infoTest("Test finished successfully.");
     }
 }

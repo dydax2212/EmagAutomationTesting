@@ -1,5 +1,6 @@
 package HelperMethods;
 
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,5 +53,13 @@ public class CommonMethods {
 
     public void scrollByPixels(int pixels) {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0," + pixels + ");");
+    }
+
+    public void verifyUrl(String expectedUrl) {
+        String actualUrl = driver.getCurrentUrl();
+
+        ChainTestListener.log("Verific URL: " + actualUrl);
+
+        Assert.assertEquals(actualUrl, expectedUrl, "URL-ul actual nu este cel așteptat!");
     }
 }
