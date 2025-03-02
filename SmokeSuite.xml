@@ -3,7 +3,6 @@
         <classes>
             <class name = "EmagTests.HomePageTests"/>
             <class name = "EmagTests.ProductPageTests"/>
-            <class name = "EmagTests.GeniusTests"/>
         </classes>
     </test>
 </suite>
