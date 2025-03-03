@@ -59,7 +59,6 @@ public class CommonMethods {
         String actualUrl = driver.getCurrentUrl();
 
         ChainTestListener.log("Verific URL: " + actualUrl);
-
         Assert.assertEquals(actualUrl, expectedUrl, "URL-ul actual nu este cel așteptat!");
     }
 }

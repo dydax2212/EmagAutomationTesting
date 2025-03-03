@@ -17,9 +17,10 @@ public class GeniusPage {
 
     // METODE
 
-    public void verifyGeniusURL()
+    public boolean verifyGeniusURL()
     {
         elementsMethods.verifyUrl("https://www.emag.ro/genius?ref=hdr_genius");
+        return false;
     }
 
     public void clickOnEmagDetails() {
@@ -120,7 +121,7 @@ public class GeniusPage {
         elementsMethods.moveSlider(freshfulSlider, 70);
     }
 
-    public void getTotal() {
+    public String getTotal() {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
@@ -128,6 +129,7 @@ public class GeniusPage {
 
         elementsMethods.waitUntilElementIsPresent(economyTotal);
         ChainTestListener.log("Economy Total: " + economyTotal.getText());
+        return null;
     }
 
 
