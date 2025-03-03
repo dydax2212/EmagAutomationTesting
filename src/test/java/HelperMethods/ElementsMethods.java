@@ -4,11 +4,7 @@ import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.time.Duration;
 
 public class ElementsMethods extends CommonMethods {
     WebDriver driver;
@@ -47,20 +43,6 @@ public class ElementsMethods extends CommonMethods {
         } catch (NoSuchElementException e) {
             return false;
         }
-    }
-
-    public void fillElement(WebElement element, String text) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(element));
-        Assert.assertTrue(element.isDisplayed(), "Element is not visible!");
-        Assert.assertTrue(element.isEnabled(), "Element is not interactable!");
-
-        element.clear();
-        element.sendKeys(text);
-        wait.until(ExpectedConditions.attributeToBe(element, "value", text));
-
-        Assert.assertEquals(text, element.getAttribute("value"), "Text input failed!");
-        LoggerUtility.infoTest("Filled element with text: " + text);
     }
 
     public void moveSlider(WebElement sliderHandle, int xOffset) {

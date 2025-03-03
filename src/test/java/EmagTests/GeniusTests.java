@@ -1,6 +1,5 @@
 package EmagTests;
 
-import HelperMethods.ElementsMethods;
 import Logger.LoggerUtility;
 import Pages.GeniusPage;
 import Pages.HomePage;
@@ -11,13 +10,11 @@ import org.testng.annotations.Test;
 
 public class GeniusTests extends Hooks {
     HomePage homePage;
-    ElementsMethods elementsMethods;
     GeniusPage geniusPage;
 
     @Test
     public void metodaTest() {
         homePage = new HomePage(getDriver());
-        elementsMethods = new ElementsMethods(getDriver());
         geniusPage = new GeniusPage(getDriver());
 
         LoggerUtility.infoTest("Test started: Navigating on eMAG website");
