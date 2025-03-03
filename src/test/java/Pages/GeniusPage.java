@@ -98,7 +98,7 @@ public class GeniusPage {
         WebElement fashionDaysSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(3) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
 
         elementsMethods.waitUntilElementIsPresent(fashionDaysSlider);
-        elementsMethods.moveSlider(fashionDaysSlider, -80);
+        elementsMethods.moveSlider(fashionDaysSlider, 80);
     }
 
     public void moveTazzSlider() {
@@ -108,7 +108,7 @@ public class GeniusPage {
         WebElement tazzSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(4) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
 
         elementsMethods.waitUntilElementIsPresent(tazzSlider);
-        elementsMethods.moveSlider(tazzSlider, -50);
+        elementsMethods.moveSlider(tazzSlider, 50);
     }
 
     public void moveFreshfulSlider() {

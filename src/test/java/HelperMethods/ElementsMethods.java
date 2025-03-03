@@ -6,6 +6,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.util.Random;
+
 public class ElementsMethods extends CommonMethods {
     WebDriver driver;
     Actions actions;
@@ -45,12 +47,19 @@ public class ElementsMethods extends CommonMethods {
         }
     }
 
-    public void moveSlider(WebElement sliderHandle, int xOffset) {
+    public void moveSlider(WebElement sliderHandle, int maxOffset) {
         Actions actions = new Actions(driver);
+        Random random = new Random();
+
+        int xOffset = random.nextBoolean() ? maxOffset : -maxOffset;
+
         actions.clickAndHold(sliderHandle)
                 .moveByOffset(xOffset, 0)
                 .release()
                 .perform();
+
+        LoggerUtility.infoTest("Slider moved by " + xOffset + " pixels.");
+        ChainTestListener.log("Slider adjusted by " + xOffset + " pixels.");
     }
 
     public String getText(WebElement element) {

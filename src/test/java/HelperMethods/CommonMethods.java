@@ -61,4 +61,10 @@ public class CommonMethods {
         ChainTestListener.log("Verific URL: " + actualUrl);
         Assert.assertEquals(actualUrl, expectedUrl, "URL-ul actual nu este cel așteptat!");
     }
+
+    public void waitForPageLoad() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
 }
