@@ -58,8 +58,8 @@ public class CommonMethods {
     public void verifyUrl(String expectedUrl) {
         String actualUrl = driver.getCurrentUrl();
 
-        ChainTestListener.log("Verific URL: " + actualUrl);
-        Assert.assertEquals(actualUrl, expectedUrl, "URL-ul actual nu este cel așteptat!");
+        ChainTestListener.log("Verify URL: " + actualUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "The actual URL does not match the expected URL!");
     }
 
     public void waitForPageLoad() {

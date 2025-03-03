@@ -59,7 +59,7 @@ public class FavoritePage {
     public void selectRandomProduct() {
         Assert.assertFalse(products.isEmpty(), "Error: No product found!");
 
-        int maxProducts = Math.min(products.size(), 7); // Selectează din primele 7 produse
+        int maxProducts = Math.min(products.size(), 5); // Selectează din primele 6 produse
         Random random = new Random();
 
         WebElement selectedProduct;
@@ -95,50 +95,62 @@ public class FavoritePage {
     public void clickOnAddToFavorite() {
         elementsMethods.waitForElementToBeClickable(addToFavorite);
         elementsMethods.clickOnElement(addToFavorite);
+
+        ChainTestListener.log("Clicked on 'Add to Favorite'.");
+        LoggerUtility.infoTest("Product added to favorites.");
     }
 
     public boolean checkFavoriteCounter(int expectedCount) {
         String expectedText = String.valueOf(expectedCount);
-
-        elementsMethods.waitForSeconds(2);
-
         String actualText = elementsMethods.getText(favoriteCounter);
 
-        return actualText.equals(expectedText);
+        boolean isMatching = actualText.equals(expectedText);
+
+        LoggerUtility.infoTest("Favorite counter check: Expected = " + expectedText + ", Actual = " + actualText);
+        ChainTestListener.log("Favorite counter: " + actualText + " (Expected: " + expectedText + ").");
+
+        return isMatching;
     }
 
     public void checkProductInFavorite() {
         elementsMethods.waitUntilElementIsPresent(favoriteButton);
         elementsMethods.hoverOnElement(favoriteButton);
-
         elementsMethods.hoverOnElement(checkProduct);
+
+        ChainTestListener.log("Hovered over 'Favorite' dropdown and product.");
+        LoggerUtility.infoTest("Checked product inside favorites.");
     }
 
-    public void addToCartFromDropdown()
-    {
+    public void addToCartFromDropdown() {
         elementsMethods.waitForElementToBeClickable(dropdownAddToCart);
         elementsMethods.clickOnElement(dropdownAddToCart);
+
+        LoggerUtility.infoTest("Product added to cart from favorites dropdown.");
     }
 
-    public void removeFromDropdown()
-    {
+    public void removeFromDropdown() {
         elementsMethods.waitUntilElementIsPresent(removeProductFromDropdown);
         elementsMethods.clickOnElement(removeProductFromDropdown);
+
+        ChainTestListener.log("Clicked on 'Remove from Favorites'.");
+        LoggerUtility.infoTest("Product removed from favorites.");
     }
 
-    public void goToFavoritePage()
-    {
+    public void goToFavoritePage() {
+        elementsMethods.waitUntilElementIsPresent(goToFavoritePage);
         elementsMethods.clickOnElement(goToFavoritePage);
+        elementsMethods.waitForPageLoad();
 
+        ChainTestListener.log("Navigated to 'Favorites' page.");
+        LoggerUtility.infoTest("Opened Favorites page.");
     }
 
-    public void goBackToHomePage()
-    {
+    public void goBackToHomePage() {
         elementsMethods.waitUntilElementIsPresent(goToHomaPage);
         elementsMethods.clickOnElement(goToHomaPage);
         elementsMethods.waitForPageLoad();
+
+        ChainTestListener.log("Returned to Home Page.");
+        LoggerUtility.infoTest("Navigated back to Home Page.");
     }
-
-
-
 }

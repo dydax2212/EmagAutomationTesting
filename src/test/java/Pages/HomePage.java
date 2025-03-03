@@ -8,8 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class HomePage
-{
+public class HomePage {
     WebDriver driver;
     ElementsMethods elementsMethods;
 
@@ -48,20 +47,10 @@ public class HomePage
     @FindBy(xpath = "//*[@class='js-dismiss-login-notice-btn dismiss-btn btn btn-link py-0 px-0']")
     WebElement stickyBlackBanner;
 
-    @FindBy(css = "body > div.gdpr-cookie-banner.js-gdpr-cookie-banner.py-2.px-0.login-view.login-view-ro.show > div > div > a")
-    WebElement loginFromBlackBanner;
-
-    @FindBy(xpath = "//*[text()='Contul meu ']")
-    WebElement contulMeu;
-
-    @FindBy(xpath = "//*[@class='btn btn-link btn-sm']")
-    WebElement contNou;
-
-    public HomePage(WebDriver driver)
-    {
+    public HomePage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     // METODE
@@ -78,31 +67,18 @@ public class HomePage
         elementsMethods.waitForSeconds(5);
     }
 
-    public void hoverContulMeu() {
-        Assert.assertTrue(contulMeu.isDisplayed(), "'Contul Meu' nu este vizibil!");
-        elementsMethods.hoverOnElement(contulMeu);
-        ChainTestListener.log("Hover pe 'Contul Meu' efectuat cu succes.");
-    }
-
-    public void clickOnContNou() {
-        Assert.assertTrue(contNou.isDisplayed(), "'Cont Nou' nu este vizibil!");
-        Assert.assertTrue(contNou.isEnabled(), "'Cont Nou' nu este clicabil!");
-        elementsMethods.clickOnElement(contNou);
-        ChainTestListener.log("Click pe 'Cont Nou' efectuat cu succes.");
-    }
-
     public void clickOnAcceptCookies() {
         elementsMethods.waitForElementToBeClickable(acceptCookies);
-        Assert.assertTrue(acceptCookies.isDisplayed(), "Butonul 'Accept Cookies' nu este vizibil!");
+        Assert.assertTrue(acceptCookies.isDisplayed(), "The 'Accept Cookies' button is not visible!");
         elementsMethods.clickOnElement(acceptCookies);
-        ChainTestListener.log("Cookies acceptate cu succes.");
+        ChainTestListener.log("Cookies accepted successfully.");
     }
 
     public void clickOnRejectCookies() {
         elementsMethods.waitForElementToBeClickable(rejectCookies);
-        Assert.assertTrue(rejectCookies.isDisplayed(), "Butonul 'Reject Cookies' nu este vizibil!");
+        Assert.assertTrue(rejectCookies.isDisplayed(), "The 'Reject Cookies' button is not visible!");
         elementsMethods.clickOnElement(rejectCookies);
-        ChainTestListener.log("Cookies respinse cu succes.");
+        ChainTestListener.log("Cookies rejected successfully.");
     }
 
     public void hoverOnPeriferice() {
@@ -110,57 +86,50 @@ public class HomePage
         elementsMethods.hoverOnElement(periferice);
 
         elementsMethods.waitUntilElementIsPresent(placiVideoSection);
-        Assert.assertTrue(placiVideoSection.isDisplayed(), "Secțiunea 'Plăci Video' nu este vizibilă!");
+        Assert.assertTrue(placiVideoSection.isDisplayed(), "The 'Video Cards' section is not visible!");
         elementsMethods.hoverOnElement(placiVideoSection);
-        ChainTestListener.log("Hover pe 'Plăci Video' efectuat cu succes.");
+        ChainTestListener.log("Hover over 'Video Cards' was successful.");
     }
 
     public void clickOnProduct() {
         elementsMethods.waitForElementToBeClickable(product1);
-        Assert.assertTrue(product1.isDisplayed(), "Produsul nu este vizibil!");
+        Assert.assertTrue(product1.isDisplayed(), "The product is not visible!");
         elementsMethods.clickOnElement(product1);
-        ChainTestListener.log("Click pe primul produs efectuat.");
+        ChainTestListener.log("Click on the first product was successful.");
     }
 
     public void clickOnSection() {
         elementsMethods.waitForElementToBeClickable(placiVideoSection);
-        Assert.assertTrue(placiVideoSection.isDisplayed(), "Secțiunea 'Plăci Video' nu este vizibilă!");
+        Assert.assertTrue(placiVideoSection.isDisplayed(), "The 'Video Cards' section is not visible!");
         elementsMethods.clickOnElement(placiVideoSection);
-        ChainTestListener.log("Click pe 'Plăci Video' efectuat cu succes.");
+        ChainTestListener.log("Click on 'Video Cards' was successful.");
     }
 
     public void clickOnEmag() {
         elementsMethods.waitForElementToBeClickable(emagPage);
-        Assert.assertTrue(emagPage.isDisplayed(), "Logo-ul eMAG nu este vizibil!");
+        Assert.assertTrue(emagPage.isDisplayed(), "The eMAG logo is not visible!");
         elementsMethods.clickOnElement(emagPage);
-        ChainTestListener.log("Click pe logo-ul eMAG efectuat.");
+        ChainTestListener.log("Click on the eMAG logo was successful.");
     }
 
     public void scrollToFooter() {
         elementsMethods.scrollToElement(footer);
         elementsMethods.waitForSeconds(2);
-        Assert.assertTrue(footer.isDisplayed(), "Footer-ul nu este vizibil după scroll!");
-        ChainTestListener.log("Scroll la footer efectuat cu succes.");
+        Assert.assertTrue(footer.isDisplayed(), "The footer is not visible after scrolling!");
+        ChainTestListener.log("Successfully scrolled to the footer.");
     }
 
     public void scrollToHeader() {
         elementsMethods.scrollToElement(header);
         elementsMethods.waitForSeconds(2);
-        Assert.assertTrue(header.isDisplayed(), "Header-ul nu este vizibil după scroll!");
-        ChainTestListener.log("Scroll la header efectuat cu succes.");
+        Assert.assertTrue(header.isDisplayed(), "The header is not visible after scrolling!");
+        ChainTestListener.log("Successfully scrolled to the header.");
     }
 
     public void closeBlackBanner() {
         elementsMethods.waitForElementToBeClickable(stickyBlackBanner);
-        Assert.assertTrue(stickyBlackBanner.isDisplayed(), "Banner-ul negru nu este vizibil!");
+        Assert.assertTrue(stickyBlackBanner.isDisplayed(), "The black sticky banner is not visible!");
         elementsMethods.clickOnElement(stickyBlackBanner);
-        ChainTestListener.log("Banner-ul negru închis cu succes.");
-    }
-
-    public void clickOnLoginFromStickyBlackBanner() {
-        elementsMethods.waitUntilElementIsPresent(loginFromBlackBanner);
-        Assert.assertTrue(loginFromBlackBanner.isDisplayed(), "Butonul 'Login' din banner-ul negru nu este vizibil!");
-        elementsMethods.clickOnElement(loginFromBlackBanner);
-        ChainTestListener.log("Click pe 'Login' din banner-ul negru efectuat.");
+        ChainTestListener.log("The black sticky banner was closed successfully.");
     }
 }
