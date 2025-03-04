@@ -1,6 +1,7 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascriptMethods;
 import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ import java.util.Random;
 public class ProductPage {
     WebDriver driver;
     ElementsMethods elementsMethods;
+    JavascriptMethods javascriptMethods;
 
     //ELEMENTE
 
@@ -60,6 +62,7 @@ public class ProductPage {
     public ProductPage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
+        this.javascriptMethods = new JavascriptMethods(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -89,13 +92,13 @@ public class ProductPage {
     public void scrollToDescription() {
         Assert.assertNotNull(descriptionSection, "Error: Descriere section is missing!");
 
-        elementsMethods.scrollToElement(descriptionSection);
+        javascriptMethods.scrollToElement(descriptionSection);
     }
 
     //Expandare descriere
     public void expandDescription() {
         if (elementsMethods.isElementPresent(expandDescriptionButton)) {
-            elementsMethods.scrollToElement(expandDescriptionButton);
+            javascriptMethods.scrollToElement(expandDescriptionButton);
             elementsMethods.waitForElementToBeClickable(expandDescriptionButton);
             elementsMethods.clickOnElement(expandDescriptionButton);
 
@@ -116,14 +119,14 @@ public class ProductPage {
     public void scrollToSpecifications() {
         Assert.assertNotNull(specsSection, "Error: Specificatii section is missing!");
 
-        elementsMethods.scrollToElement(specsSection);
+        javascriptMethods.scrollToElement(specsSection);
         elementsMethods.waitUntilElementIsPresent(specsSection);
     }
 
     //Expandare specificații
     public void expandSpecifications() {
         if (elementsMethods.isElementPresent(expandSpecsButton)) {
-            elementsMethods.scrollToElement(expandSpecsButton);
+            javascriptMethods.scrollToElement(expandSpecsButton);
             elementsMethods.waitForElementToBeClickable(expandSpecsButton);
             elementsMethods.clickOnElement(expandSpecsButton);
 
@@ -140,7 +143,7 @@ public class ProductPage {
     }
 
     public void scrollToDisclaimerSection() {
-        elementsMethods.scrollToElement(disclaimerSection);
+        javascriptMethods.scrollToElement(disclaimerSection);
         elementsMethods.waitForSeconds(3);
         ChainTestListener.log("Disclaimer text: " + elementsMethods.getText(disclaimerSection));
     }

@@ -1,9 +1,9 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascriptMethods;
 import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +13,7 @@ import org.testng.Assert;
 public class HomePage {
     WebDriver driver;
     ElementsMethods elementsMethods;
+    JavascriptMethods javascriptMethods;
 
     //ELEMENTE
 
@@ -55,6 +56,7 @@ public class HomePage {
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
+        this.javascriptMethods = new JavascriptMethods(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -142,14 +144,14 @@ public class HomePage {
     }
 
     public void scrollToFooter() {
-        elementsMethods.scrollToElement(footer);
+        javascriptMethods.scrollToElement(footer);
         elementsMethods.waitForSeconds(2);
         Assert.assertTrue(footer.isDisplayed(), "The footer is not visible after scrolling!");
         ChainTestListener.log("Successfully scrolled to the footer.");
     }
 
     public void scrollToHeader() {
-        elementsMethods.scrollToElement(header);
+        javascriptMethods.scrollToElement(header);
         elementsMethods.waitForSeconds(2);
         Assert.assertTrue(header.isDisplayed(), "The header is not visible after scrolling!");
         ChainTestListener.log("Successfully scrolled to the header.");

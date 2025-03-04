@@ -33,7 +33,8 @@ public class GeniusTests extends Hooks {
 
         // Click on the Genius button from the homepage
         homePage.clickOnGeniusButton();
-//
+        geniusPage.verifyGeniusURL();
+
         // Navigate through service details
         geniusPage.clickOnEmagDetails();
         geniusPage.clickOnTazzDetails();

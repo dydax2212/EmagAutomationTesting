@@ -1,6 +1,7 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascriptMethods;
 import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,7 @@ import java.time.Duration;
 public class FavoritePage {
     WebDriver driver;
     ElementsMethods elementsMethods;
+    JavascriptMethods javascriptMethods;
 
     //ELEMENTE
 
@@ -53,6 +55,7 @@ public class FavoritePage {
     public FavoritePage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
+        this.javascriptMethods = new JavascriptMethods(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -108,7 +111,7 @@ public class FavoritePage {
     public void goToFavoritePage() {
         elementsMethods.waitUntilElementIsPresent(goToFavoritePage);
         elementsMethods.clickOnElement(goToFavoritePage);
-        elementsMethods.waitForPageLoad();
+        javascriptMethods.waitForPageLoad();
 
         elementsMethods.verifyUrl("https://www.emag.ro/favorites?ref=ua_favorites");
 
@@ -127,7 +130,7 @@ public class FavoritePage {
         ChainTestListener.log("Third product added to Favorites.");
         LoggerUtility.infoTest("Clicked on 'Add to Favorites' for third product.");
 
-        elementsMethods.waitForPageLoad();
+        javascriptMethods.waitForPageLoad();
     }
 
     public void removeFirstProductFromFavPage() {
@@ -138,7 +141,7 @@ public class FavoritePage {
         ChainTestListener.log("Clicked on 'Remove from Favorites' button on Favorites Page.");
         LoggerUtility.infoTest("Removed first product from Favorites Page.");
 
-        elementsMethods.waitForPageLoad();
+        javascriptMethods.waitForPageLoad();
     }
 
 

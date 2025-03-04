@@ -1,6 +1,7 @@
 package EmagTests;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascriptMethods;
 import Logger.LoggerUtility;
 import Pages.HomePage;
 import ShareDataBrowser.Hooks;
@@ -11,11 +12,13 @@ import org.testng.annotations.Test;
 public class HomePageTests extends Hooks {
     HomePage homePage;
     ElementsMethods elementsMethods;
+    JavascriptMethods javascriptMethods;
 
     @Test
     public void metodaTest() {
         homePage = new HomePage(getDriver());
         elementsMethods = new ElementsMethods(getDriver());
+        javascriptMethods = new JavascriptMethods(getDriver());
 
         LoggerUtility.infoTest("Test started: Navigating on eMAG website");
         ChainTestListener.log("Chrome opened");
@@ -30,7 +33,7 @@ public class HomePageTests extends Hooks {
         LoggerUtility.infoTest("Sticky black banner closed.");
 
         // SCROLL TO THE MIDDLE OF THE WEBPAGE
-        elementsMethods.scrollToHalfPage();
+        javascriptMethods.scrollToHalfPage();
         LoggerUtility.infoTest("Scrolled to the middle of the page.");
 
         // SCROLL TO THE END OF THE WEBPAGE

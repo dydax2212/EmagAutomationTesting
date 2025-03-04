@@ -1,6 +1,7 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import HelperMethods.JavascriptMethods;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
@@ -8,10 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 public class GeniusPage {
     WebDriver driver;
     ElementsMethods elementsMethods;
+    JavascriptMethods javascriptMethods;
 
     public GeniusPage(WebDriver driver) {
         this.driver = driver;
         this.elementsMethods = new ElementsMethods(driver);
+        this.javascriptMethods = new JavascriptMethods(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -31,7 +34,7 @@ public class GeniusPage {
 
         elementsMethods.waitForElementToBeClickable(emagDetails);
         elementsMethods.clickOnElement(emagDetails);
-        elementsMethods.scrollByPixels(500);
+        javascriptMethods.scrollByPixels(500);
         ChainTestListener.log("Accessed eMAG tab.");
     }
 
