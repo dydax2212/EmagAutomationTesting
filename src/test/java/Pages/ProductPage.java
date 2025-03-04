@@ -1,6 +1,7 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -164,11 +165,25 @@ public class ProductPage {
 
     public String getCartConfirmationText() {
         elementsMethods.waitUntilElementIsPresent(cartConfirmation);
-        return cartConfirmation.getText();
+        String actualText = cartConfirmation.getText();
+
+        Assert.assertEquals(actualText, "Produsul a fost adaugat in cos", "Error: Cart confirmation message is incorrect!");
+
+        ChainTestListener.log("Cart confirmation message verified: " + actualText);
+        LoggerUtility.infoTest("Cart confirmation verified successfully.");
+
+        return actualText;
     }
 
     public String getFavoriteConfirmationText() {
         elementsMethods.waitUntilElementIsPresent(favoriteConfirmation);
-        return favoriteConfirmation.getText();
+        String actualText = favoriteConfirmation.getText();
+
+        Assert.assertEquals(actualText, "Produsul a fost adaugat la Favorite", "Error: Favorite confirmation message is incorrect!");
+
+        ChainTestListener.log("Favorite confirmation message verified: " + actualText);
+        LoggerUtility.infoTest("Favorite confirmation verified successfully.");
+
+        return actualText;
     }
 }

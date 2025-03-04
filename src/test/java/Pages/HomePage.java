@@ -1,7 +1,9 @@
 package Pages;
 
 import HelperMethods.ElementsMethods;
+import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,8 +34,11 @@ public class HomePage {
     @FindBy(xpath = "//*[@class='em em-mouse megamenu-list-department__icon']")
     WebElement periferice;
 
-    @FindBy(xpath = "//*[@class='card-alt no-decoration js-product-url']")
+    @FindBy(xpath = "(//*[@class='card-v2-title-wrapper'])[1]")
     WebElement product1;
+
+    @FindBy(xpath = "(//*[@class='product-new-price'])[1]")
+    WebElement product1Price;
 
     @FindBy(xpath = "//*[@class='navbar-brand']")
     WebElement emagPage;
@@ -91,12 +96,36 @@ public class HomePage {
         ChainTestListener.log("Hover over 'Video Cards' was successful.");
     }
 
+//    public void clickOnProduct() {
+//        elementsMethods.waitForElementToBeClickable(product1);
+//        Assert.assertTrue(product1.isDisplayed(), "The product is not visible!");
+//        elementsMethods.clickOnElement(product1);
+//        ChainTestListener.log("Click on the first product was successful.");
+//    }
+
     public void clickOnProduct() {
         elementsMethods.waitForElementToBeClickable(product1);
-        Assert.assertTrue(product1.isDisplayed(), "The product is not visible!");
+        Assert.assertTrue(product1.isDisplayed(), "Error: The first product is not visible!");
+
+        // Get product title
+        String productTitle = product1.getText().trim();
+        Assert.assertFalse(productTitle.isEmpty(), "Error: The first product title is empty!");
+
+        // Get product price
+        elementsMethods.waitUntilElementIsPresent(product1Price);
+        String productPrice = product1Price.getText().trim();
+        Assert.assertFalse(productPrice.isEmpty(), "Error: The first product price is empty!");
+
+        // Log product details
+        ChainTestListener.log("Product selected: " + productTitle);
+        ChainTestListener.log("Product price: " + productPrice);
+        LoggerUtility.infoTest("Selected product: " + productTitle + " | Price: " + productPrice);
+
+        // Click on product to open details page
         elementsMethods.clickOnElement(product1);
-        ChainTestListener.log("Click on the first product was successful.");
+        ChainTestListener.log("Clicked on the first product successfully.");
     }
+
 
     public void clickOnSection() {
         elementsMethods.waitForElementToBeClickable(placiVideoSection);

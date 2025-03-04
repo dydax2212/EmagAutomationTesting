@@ -3,25 +3,21 @@ package Pages;
 import HelperMethods.ElementsMethods;
 import Logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.util.List;
-import java.util.Random;
+import java.time.Duration;
 
 public class FavoritePage {
     WebDriver driver;
     ElementsMethods elementsMethods;
 
     //ELEMENTE
-
-    @FindBy(css = "a.card-v2-title")
-    List<WebElement> products;
 
     @FindBy(xpath = "//*[@class='add-to-favorites btn btn-xl btn-default btn-icon btn-block gtm_t95ovv border-lg']")
     WebElement addToFavorite;
@@ -41,11 +37,17 @@ public class FavoritePage {
     @FindBy(xpath = "//*[@class='btn btn-xs nav-remove-favorite-product nav-product-line_remove gtm_mg160119537']")
     WebElement removeProductFromDropdown;
 
-    @FindBy(xpath = "//*[@class='visible-lg-inline visible-xl-inline']")
+    @FindBy(xpath = "//a[@href='/favorites?ref=ua_favorites']")
     WebElement goToFavoritePage;
 
-    @FindBy(xpath = "//*[@class='d-inline-block']")
-    WebElement goToHomaPage;
+    @FindBy(xpath = "(//*[@class='em em-fav em-fav-bold'])[2]")
+    WebElement addProduct2ToFav;
+
+    @FindBy(xpath = "(//*[@class='em em-fav em-fav-bold'])[3]")
+    WebElement addProduct3ToFav;
+
+    @FindBy(xpath = "(//*[@class='gtm_9p2y1a d-none d-md-inline-block'])[1]")
+    WebElement removeProductFromFavPage;
 
 
     public FavoritePage(WebDriver driver) {
@@ -55,42 +57,6 @@ public class FavoritePage {
     }
 
     //METODE
-
-    public void selectRandomProduct() {
-        Assert.assertFalse(products.isEmpty(), "Error: No product found!");
-
-        int maxProducts = Math.min(products.size(), 5); // Selectează din primele 6 produse
-        Random random = new Random();
-
-        WebElement selectedProduct;
-        String productTitle;
-        String productPrice = "";
-
-        do {
-            selectedProduct = products.get(random.nextInt(maxProducts));
-            productTitle = selectedProduct.getText();
-
-            Assert.assertFalse(productTitle.isEmpty(), "Error: Selected product has no title!");
-
-            List<WebElement> priceElements = selectedProduct.findElements(By.xpath("./ancestor::div[contains(@class, 'card-item')]//p[contains(@class, 'product-new-price')]"));
-            if (!priceElements.isEmpty()) {
-                productPrice = priceElements.get(0).getText().trim();
-            }
-        } while (productPrice.isEmpty()); // Dacă nu are preț, alege alt produs
-
-        Assert.assertFalse(productPrice.isEmpty(), "Error: Selected product has no price!");
-
-        ChainTestListener.log("Product selected: " + productTitle);
-        ChainTestListener.log("Product price: " + productPrice);
-
-        LoggerUtility.infoTest("Selected product: " + productTitle + " | Price: " + productPrice);
-
-        elementsMethods.scrollToElement(selectedProduct);
-        elementsMethods.clickOnElement(selectedProduct);
-
-        elementsMethods.waitForPageLoad();
-        Assert.assertNotEquals(driver.getCurrentUrl(), "https://www.emag.ro/", "Error: Product page did not load!");
-    }
 
     public void clickOnAddToFavorite() {
         elementsMethods.waitForElementToBeClickable(addToFavorite);
@@ -102,8 +68,11 @@ public class FavoritePage {
 
     public boolean checkFavoriteCounter(int expectedCount) {
         String expectedText = String.valueOf(expectedCount);
-        String actualText = elementsMethods.getText(favoriteCounter);
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.textToBePresentInElement(favoriteCounter, expectedText));
+
+        String actualText = elementsMethods.getText(favoriteCounter);
         boolean isMatching = actualText.equals(expectedText);
 
         LoggerUtility.infoTest("Favorite counter check: Expected = " + expectedText + ", Actual = " + actualText);
@@ -141,16 +110,36 @@ public class FavoritePage {
         elementsMethods.clickOnElement(goToFavoritePage);
         elementsMethods.waitForPageLoad();
 
+        elementsMethods.verifyUrl("https://www.emag.ro/favorites?ref=ua_favorites");
+
         ChainTestListener.log("Navigated to 'Favorites' page.");
         LoggerUtility.infoTest("Opened Favorites page.");
     }
 
-    public void goBackToHomePage() {
-        elementsMethods.waitUntilElementIsPresent(goToHomaPage);
-        elementsMethods.clickOnElement(goToHomaPage);
-        elementsMethods.waitForPageLoad();
+    public void addTwoMoreProductsToFav() {
+        elementsMethods.waitForElementToBeClickable(addProduct2ToFav);
+        elementsMethods.clickOnElement(addProduct2ToFav);
+        ChainTestListener.log("Second product added to Favorites.");
+        LoggerUtility.infoTest("Clicked on 'Add to Favorites' for second product.");
 
-        ChainTestListener.log("Returned to Home Page.");
-        LoggerUtility.infoTest("Navigated back to Home Page.");
+        elementsMethods.waitForElementToBeClickable(addProduct3ToFav);
+        elementsMethods.clickOnElement(addProduct3ToFav);
+        ChainTestListener.log("Third product added to Favorites.");
+        LoggerUtility.infoTest("Clicked on 'Add to Favorites' for third product.");
+
+        elementsMethods.waitForPageLoad();
     }
+
+    public void removeFirstProductFromFavPage() {
+        elementsMethods.waitForElementToBeClickable(removeProductFromFavPage);
+        Assert.assertTrue(removeProductFromFavPage.isDisplayed(), "Error: Remove button is not visible!");
+
+        elementsMethods.clickOnElement(removeProductFromFavPage);
+        ChainTestListener.log("Clicked on 'Remove from Favorites' button on Favorites Page.");
+        LoggerUtility.infoTest("Removed first product from Favorites Page.");
+
+        elementsMethods.waitForPageLoad();
+    }
+
+
 }
