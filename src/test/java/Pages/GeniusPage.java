@@ -30,7 +30,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement emagDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-879"));
+        WebElement emagDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-1 > i"));
 
         elementsMethods.waitForElementToBeClickable(emagDetails);
         elementsMethods.clickOnElement(emagDetails);
@@ -42,7 +42,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement tazzDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-880"));
+        WebElement tazzDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-2 > i"));
 
         elementsMethods.waitForElementToBeClickable(tazzDetails);
         elementsMethods.clickOnElement(tazzDetails);
@@ -53,7 +53,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement fashionDaysDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-881"));
+        WebElement fashionDaysDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-3 > i"));
 
         elementsMethods.waitForElementToBeClickable(fashionDaysDetails);
         elementsMethods.clickOnElement(fashionDaysDetails);
@@ -64,7 +64,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement freshfulDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-882"));
+        WebElement freshfulDetails = shadowRoot.findElement(By.cssSelector("#headlessui-tabs-tab-4 > i"));
 
         elementsMethods.waitForElementToBeClickable(freshfulDetails);
         elementsMethods.clickOnElement(freshfulDetails);
@@ -88,7 +88,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement emagSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(2) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+        WebElement emagSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div.savings-calculator.lg-breakpoint.savings-calculator > fieldset > div:nth-child(2) > label > div.savings-calculator-input.input"));
 
         elementsMethods.waitUntilElementIsPresent(emagSlider);
         elementsMethods.moveSlider(emagSlider, 50);
@@ -98,7 +98,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement fashionDaysSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(3) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+        WebElement fashionDaysSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div.savings-calculator.lg-breakpoint.savings-calculator > fieldset > div:nth-child(3) > label > div.savings-calculator-input.input"));
 
         elementsMethods.waitUntilElementIsPresent(fashionDaysSlider);
         elementsMethods.moveSlider(fashionDaysSlider, 80);
@@ -108,7 +108,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement tazzSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(4) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+        WebElement tazzSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div.savings-calculator.lg-breakpoint.savings-calculator > fieldset > div:nth-child(4) > label > div.savings-calculator-input.input"));
 
         elementsMethods.waitUntilElementIsPresent(tazzSlider);
         elementsMethods.moveSlider(tazzSlider, 50);
@@ -118,7 +118,7 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement freshfulSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > fieldset > div:nth-child(5) > label > div._savingsCalculatorInput_682cl_1._input_racfl_42"));
+        WebElement freshfulSlider = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div.savings-calculator.lg-breakpoint.savings-calculator > fieldset > div:nth-child(5) > label > div.savings-calculator-input.input"));
 
         elementsMethods.waitUntilElementIsPresent(freshfulSlider);
         elementsMethods.moveSlider(freshfulSlider, 70);
@@ -128,13 +128,10 @@ public class GeniusPage {
         WebElement shadowHost = driver.findElement(By.tagName("emag-genius"));
         SearchContext shadowRoot = shadowHost.getShadowRoot();
 
-        WebElement economyTotal = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div._savingsCalculator_racfl_1._lgBreakpoint_racfl_74._savingsCalculator_1b9w7_161 > div._outputPrice_racfl_53"));
+        WebElement economyTotal = shadowRoot.findElement(By.cssSelector("div > div > div.main > div > div.savings-calculator.lg-breakpoint.savings-calculator > div.output-price"));
 
         elementsMethods.waitUntilElementIsPresent(economyTotal);
         ChainTestListener.log("Economy Total: " + economyTotal.getText());
         return null;
     }
-
-
-
 }
