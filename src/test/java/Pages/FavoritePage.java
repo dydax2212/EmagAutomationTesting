@@ -143,6 +143,4 @@ public class FavoritePage {
 
         javascriptMethods.waitForPageLoad();
     }
-
-
 }

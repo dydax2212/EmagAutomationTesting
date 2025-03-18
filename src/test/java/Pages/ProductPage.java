@@ -111,7 +111,6 @@ public class ProductPage {
             ChainTestListener.log("Descriere expanded.");
         } else {
             ChainTestListener.log("There is no expand button for Descriere on this page.");
-            return;
         }
     }
 
@@ -138,7 +137,6 @@ public class ProductPage {
             ChainTestListener.log("Specificatii expanded.");
         } else {
             ChainTestListener.log("There is no expand button for Specificatii on this page.");
-            return;
         }
     }
 

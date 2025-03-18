@@ -98,13 +98,6 @@ public class HomePage {
         ChainTestListener.log("Hover over 'Video Cards' was successful.");
     }
 
-//    public void clickOnProduct() {
-//        elementsMethods.waitForElementToBeClickable(product1);
-//        Assert.assertTrue(product1.isDisplayed(), "The product is not visible!");
-//        elementsMethods.clickOnElement(product1);
-//        ChainTestListener.log("Click on the first product was successful.");
-//    }
-
     public void clickOnProduct() {
         elementsMethods.waitForElementToBeClickable(product1);
         Assert.assertTrue(product1.isDisplayed(), "Error: The first product is not visible!");
